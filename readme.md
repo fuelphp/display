@@ -1,1 +1,0 @@
-# FuelPHP Display functions library.

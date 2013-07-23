@@ -1,8 +1,7 @@
 {
 	"name": "fuelphp/display",
 	"type": "library",
-	"description": "FuelPHP Display package",
-	"keywords": ["View", "Presenter", "HTML"],
+	"description": "FuelPHP Display and templating.",
 	"homepage": "https://github.com/fuelphp/display",
 	"license": "MIT",
 	"authors": [
@@ -11,14 +10,22 @@
 			"email": "team@fuelphp.com"
 		}
 	],
+	"autoload": {
+		"psr-0": {
+			"Fuel\\Display": "src"
+		}
+	},
 	"require": {
-		"php": ">=5.3.3"
+		"php": ">=5.4",
+		"fuelphp/filesystem": "dev-master",
+		"fuelphp/common": "dev-master"
 	},
 	"require-dev": {
-		"mockery/mockery": "0.7.*"
-	},
-	"autoload": {
-		"psr-0": { "FuelPHP\\Display": "src/" }
+		"mockery/mockery": "0.7.*",
+		"twig/twig": "1.*",
+		"mustache/mustache": "2.3.*",
+		"dflydev/markdown": "1.0.*",
+		"smarty/smarty": "3.1.*"
 	},
 	"minimum-stability": "dev"
 }
