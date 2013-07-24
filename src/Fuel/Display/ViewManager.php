@@ -21,7 +21,7 @@ class ViewManager extends DataContainer
 	protected $finder;
 
 	/**
-	 * @var  \Fuel\Presenter\Parser\AbstractParser[]  parsers
+	 * @var  \Fuel\Display\Parser\AbstractParser[]  parsers
 	 */
 	protected $parsers = array();
 

@@ -10,7 +10,7 @@
 
 namespace Fuel\Display;
 
-use Fuel\Presenter\Parser\AbstractParser;
+use Fuel\Display\Parser\AbstractParser;
 
 class View extends DataContainer
 {
@@ -20,12 +20,12 @@ class View extends DataContainer
 	protected $file;
 
 	/**
-	 * @var \Fuel\Presenter\Parser\AbstractParser  $parser
+	 * @var \Fuel\Display\Parser\AbstractParser  $parser
 	 */
 	protected $parser;
 
 	/**
-	 * @var \Fuel\Presenter\ViewManager  $manager
+	 * @var \Fuel\Display\ViewManager  $manager
 	 */
 	protected $manager;
 
@@ -37,8 +37,8 @@ class View extends DataContainer
 	/**
 	 * Constructor
 	 *
-	 * @param  \Fuel\Presenter\ViewManager  $manager
-	 * @param  \Fuel\Presenter\Parser\AbstractParser  $parser
+	 * @param  \Fuel\Display\ViewManager  $manager
+	 * @param  \Fuel\Display\Parser\AbstractParser  $parser
 	 * @param  string  $file
 	 * @param  boolean  $filter
 	 */

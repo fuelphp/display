@@ -27,7 +27,7 @@ class ServicesProvider extends ServiceProvider
 	/**
 	 * @var  array  list of service names provided by this provider
 	 */
-	public $provides = array('display.manager');
+	public $provides = array('view', 'parser.php');
 
 	/**
 	 * Service provider definitions
@@ -35,9 +35,15 @@ class ServicesProvider extends ServiceProvider
 	public function provide()
 	{
 		// \Fuel\Display\ViewManager
-		$this->register('display.manager', function ($dic, Finder $finder, array $config = array())
+		$this->register('view', function ($dic, Finder $finder, array $config = array())
 		{
 			return new ViewManager($finder, $config);
+		});
+
+		// \Fuel\Display\Parser\Php
+		$this->register('parser.php', function ($dic)
+		{
+			return new Parser\Php();
 		});
 	}
 }

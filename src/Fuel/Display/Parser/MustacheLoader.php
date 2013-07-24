@@ -12,19 +12,19 @@ namespace Fuel\Display\Parser;
 
 use Mustache_Loader;
 use Mustache_Exception_UnknownTemplateException;
-use Fuel\Presenter\ViewManager;
+use Fuel\Display\ViewManager;
 
 class MustacheLoader implements Mustache_Loader
 {
 	/**
-	 * @var  \Fuel\Presenter\ViewManager  $manager
+	 * @var  \Fuel\Display\ViewManager  $manager
 	 */
 	protected $manager;
 
 	/**
 	 * Constructor
 	 *
-	 * $param  \Fuel\Presenter\ViewManager  $manager
+	 * $param  \Fuel\Display\ViewManager  $manager
 	 */
 	public function __construct(ViewManager $manager)
 	{

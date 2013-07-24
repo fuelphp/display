@@ -12,19 +12,19 @@ namespace Fuel\Display\Parser;
 
 use Twig_Error_Loader;
 use Twig_LoaderInterface;
-use Fuel\Presenter\ViewManager;
+use Fuel\Display\ViewManager;
 
 class TwigLoader implements Twig_LoaderInterface
 {
 	/**
-	 * @var  \Fuel\Presenter\ViewManager  $manager
+	 * @var  \Fuel\Display\ViewManager  $manager
 	 */
 	protected $manager;
 
 	/**
 	 * Constructor
 	 *
-	 * @param  \Fuel\Presenter\ViewManager  $manager
+	 * @param  \Fuel\Display\ViewManager  $manager
 	 */
 	public function __construct(ViewManager $manager)
 	{

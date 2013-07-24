@@ -10,20 +10,20 @@
 
 namespace Fuel\Display\Parser;
 
-use Fuel\Presenter\DataContainer;
-use Fuel\Presenter\ViewManager;
+use Fuel\Display\DataContainer;
+use Fuel\Display\ViewManager;
 
 abstract class AbstractParser extends DataContainer
 {
 	/**
-	 * @var  \Fuel\Presenter\ViewManager  $manager
+	 * @var  \Fuel\Display\ViewManager  $manager
 	 */
 	protected $manager;
 
 	/**
 	 * Set the view manager
 	 *
-	 * @param   \Fuel\Presenter\ViewManager  $manager
+	 * @param   \Fuel\Display\ViewManager  $manager
 	 * @return  $this
 	 */
 	public function setManager(ViewManager $manager)

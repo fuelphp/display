@@ -8,7 +8,7 @@
  * @link       http://fuelphp.com
  */
 
-namespace Fuel\Config;
+namespace Fuel\Display;
 
 /**
  * FuelPHP Composer library framework bootstrap
