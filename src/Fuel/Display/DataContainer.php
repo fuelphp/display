@@ -159,6 +159,28 @@ abstract class DataContainer
 	}
 
 	/**
+	 * Assigns a value by reference. The benefit of binding is that values can
+	 * be altered without re-setting them. It is also possible to bind variables
+	 * before they have values. Assigned values will be available as a
+	 * variable within the view file:
+	 *
+	 *     // This reference can be accessed as $ref within the object
+	 *     $obj->bind('ref', $bar);
+	 *
+	 * @param   string   variable name
+	 * @param   mixed    referenced variable
+	 * @param   bool     Whether to filter the var on output
+	 * @return  $this
+	 */
+	public function bind($key, &$value, $filter = null)
+	{
+		$this->filterIndex[$key] = $filter === null ? $this->autoFilter : $filter;
+		$this->data[$key] =& $value;
+
+		return $this;
+	}
+
+	/**
 	 * Set safe view data, will not be filtered
 	 *
 	 * @param   string|array  $key    key or view data array
