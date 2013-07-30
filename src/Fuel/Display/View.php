@@ -32,7 +32,7 @@ class View extends DataContainer
 	/**
 	 * @var boolean  $filter
 	 */
-	protected $filter = false;
+	protected $autoFilter = false;
 
 	/**
 	 * Constructor

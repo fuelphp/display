@@ -129,23 +129,30 @@ abstract class DataContainer
 	 */
 	public function set($key, $value = null, $filter = null)
 	{
-		if ( ! is_array($key))
+		if ($key instanceOf DataContainer)
+		{
+			$this->data = $key->data;
+			$this->filterIndex = $key->filterIndex;
+		}
+
+		elseif ( ! is_array($key))
 		{
 			$this->data[$key] = $value;
 			$this->filterIndex[$key] = $filter === null ? $this->autoFilter : $filter;
-
-			return $this;
 		}
 
-		if (is_bool($value))
+		else
 		{
-			$filter = $value;
-		}
+			if (is_bool($value))
+			{
+				$filter = $value;
+			}
 
-		foreach ($key as $_key => $_value)
-		{
-			$this->data[$_key] = $_value;
-			$this->filterIndex[$_key] = $filter === null ? $this->autoFilter : $filter;
+			foreach ($key as $_key => $_value)
+			{
+				$this->data[$_key] = $_value;
+				$this->filterIndex[$_key] = $filter === null ? $this->autoFilter : $filter;
+			}
 		}
 
 		return $this;
