@@ -10,7 +10,7 @@
 
 namespace Fuel\Display;
 
-abstract class Presenter extends DataContainer
+class Presenter extends DataContainer
 {
 	/**
 	 * @var \Fuel\Display\View  $view
@@ -43,13 +43,6 @@ abstract class Presenter extends DataContainer
 	 * @since  1.0.0
 	 */
 	public function before() {}
-
-	/**
-	 * Default method that'll be run upon Presenter rendering
-	 *
-	 * @since  1.0.0
-	 */
-	abstract public function view();
 
 	/**
 	 * Method to do general Presenter finishing up
