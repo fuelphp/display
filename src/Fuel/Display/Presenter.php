@@ -68,7 +68,7 @@ abstract class Presenter extends DataContainer
 	public function __construct(ViewManager $manager, $method, $autoFilter, $view)
 	{
 		$this->manager = $manager;
-		$this->method = $method;
+		$this->method = $method === null ? 'view' : $method;
 		$this->autoFilter = $autoFilter;
 		$this->view = $view;
 
