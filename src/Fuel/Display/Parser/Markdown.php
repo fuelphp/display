@@ -33,7 +33,14 @@ class Markdown extends AbstractParser
 	 */
 	public function parse($file, array $data)
 	{
-		$contents = file_get_contents($file);
+		if (file_exists($file))
+		{
+			$contents = file_get_contents($file);
+		}
+		else
+		{
+			$contents = $file;
+		}
 
 		return $this->markdown->transformMarkdown($contents);
 	}
