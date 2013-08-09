@@ -139,7 +139,7 @@ class ViewManager extends DataContainer
 	{
 		$view = $this->viewFolder.'/'.ltrim($view, '/');
 
-		return $this->finder->findFile($view);
+		return $this->finder->findFileReversed($view);
 	}
 
 	public function forge($view, array $data = null, $filter = null)
