@@ -63,7 +63,10 @@ class Presenter extends DataContainer
 		$this->manager = $manager;
 		$this->method = $method === null ? 'view' : $method;
 		$this->autoFilter = $autoFilter;
-		$this->view = $view;
+		if ($view !== null)
+		{
+			$this->setView($view);
+		}
 
 		$this->request = \Request::getInstance();
 	}
@@ -92,6 +95,12 @@ class Presenter extends DataContainer
 	{
 		$this->view = $view;
 
+		// construct the view if needed
+		if ( ! $this->view instanceOf \Fuel\Display\View)
+		{
+			$this->view = \View::forge($this->view);
+		}
+
 		return $this;
 	}
 
@@ -103,12 +112,6 @@ class Presenter extends DataContainer
 	 */
 	public function render(Array $data = null)
 	{
-		// construct the view if needed
-		if ( ! $this->view instanceOf \Fuel\Display\View)
-		{
-			$this->view = \View::forge($this->view);
-		}
-
 		// run the methods
 		$this->before();
 		if (method_exists($this, $this->method))
