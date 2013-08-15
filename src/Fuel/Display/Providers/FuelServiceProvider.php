@@ -8,21 +8,20 @@
  * @link       http://fuelphp.com
  */
 
-namespace Fuel\Display;
+namespace Fuel\Display\Providers;
 
-use Fuel\Dependency\ServiceProvider;
 use Fuel\FileSystem\Finder;
 
+use Fuel\Dependency\ServiceProvider;
+
 /**
- * ServicesProvider class
- *
- * Defines the services published by this namespace to the DiC
+ * FuelPHP ServiceProvider class for this package
  *
  * @package  Fuel\Display
  *
  * @since  1.0.0
  */
-class ServicesProvider extends ServiceProvider
+class FuelServiceProvider extends ServiceProvider
 {
 	/**
 	 * @var  array  list of service names provided by this provider
@@ -37,36 +36,37 @@ class ServicesProvider extends ServiceProvider
 		// \Fuel\Display\ViewManager
 		$this->register('viewmanager', function ($dic, Finder $finder, array $config = array())
 		{
-			return new ViewManager($finder, $config);
+			return $dic->resolve('Fuel\Display\ViewManager', array($finder, $config));
 		});
 
 		// \Fuel\Display\Parser\Php
 		$this->register('parser.php', function ($dic)
 		{
-			return new Parser\Php();
+			return $dic->resolve('Fuel\Display\Parser\Php');
 		});
 
 		// \Fuel\Display\Parser\Markdown
 		$this->register('parser.markdown', function ($dic)
 		{
-			return new Parser\Markdown();
-		});
-		// \Fuel\Display\Parser\Mustache
-		$this->register('parser.mustache', function ($dic)
-		{
-			return new Parser\MustacheLoader();
+			return $dic->resolve('Fuel\Display\Parser\Markdown');
 		});
 
-		// \Fuel\Display\Parser\Twig
+		// \Fuel\Display\Parser\MustacheLoader
+		$this->register('parser.mustache', function ($dic)
+		{
+			return $dic->resolve('Fuel\Display\Parser\MustacheLoader');
+		});
+
+		// \Fuel\Display\Parser\TwigLoader
 		$this->register('parser.tiwg', function ($dic)
 		{
-			return new Parser\TwigLoader();
+			return $dic->resolve('Fuel\Display\Parser\TwigLoader');
 		});
 
 		// \Fuel\Display\Parser\Smarty
 		$this->register('parser.smarty', function ($dic)
 		{
-			return new Parser\Smarty();
+			return $dic->resolve('Fuel\Display\Parser\Smarty');
 		});
 	}
 }
