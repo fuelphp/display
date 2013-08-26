@@ -61,7 +61,7 @@ class ViewManager extends DataContainer
 
 		if (isset($config['cache']))
 		{
-			$this->cachePath = rtrim('cache', '/').'/';
+			$this->cachePath = rtrim('cache', '\\/').DIRECTORY_SEPARATOR;
 		}
 
 		if (isset($config['auto_filter']))
@@ -137,7 +137,7 @@ class ViewManager extends DataContainer
 
 	public function findView($view)
 	{
-		$view = $this->viewFolder.'/'.ltrim($view, '/');
+		$view = $this->viewFolder.DIRECTORY_SEPARATOR.ltrim($view, DIRECTORY_SEPARATOR);
 
 		return $this->finder->findFileReversed($view);
 	}
