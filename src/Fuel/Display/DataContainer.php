@@ -59,7 +59,14 @@ abstract class DataContainer
 
 			if ($this->filterIndex[$key])
 			{
-				$data[$key] = $this->filter($value);
+				if ($value instanceOf Sanitize)
+				{
+					$data[$key] = $value->sanitizeObject();
+				}
+				else
+				{
+					$data[$key] = $this->filter($value);
+				}
 
 				continue;
 			}
