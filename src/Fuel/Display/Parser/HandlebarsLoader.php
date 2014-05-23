@@ -11,6 +11,13 @@ class HandlebarsLoader implements Loader
 {
 
 	/**
+	 * Prefix to append to file names when loading files
+	 *
+	 * @var string
+	 */
+	protected $prefix = '';
+
+	/**
 	 * @var ViewManager
 	 */
 	protected $manager;
@@ -31,23 +38,35 @@ class HandlebarsLoader implements Loader
 	{
 		if (substr($name, -11) !== '.handlebars')
 		{
-			$name .= '.handlebars';
+			$name = $this->prefix . $name . '.handlebars';
 		}
 
 		$file = $name;
 
-		if ( ! file_exists($name))
+		if ( ! file_exists($name) && ! $file = $this->manager->findView($name))
 		{
-			//TODO: Cleanup
-			if ( ! $file = $this->manager->findView($name))
-			{
-				throw new ViewNotFoundException($name);
-			}
+			throw new ViewNotFoundException($name);
 		}
 
 		$content  = file_get_contents($file);
 
 		return $content;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getPrefix()
+	{
+		return $this->prefix;
+	}
+
+	/**
+	 * @param string $prefix
+	 */
+	public function setPrefix($prefix)
+	{
+		$this->prefix = $prefix;
 	}
 
 }

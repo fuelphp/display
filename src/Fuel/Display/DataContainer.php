@@ -10,6 +10,7 @@
 
 namespace Fuel\Display;
 
+use Closure;
 use OutOfBoundsException;
 use ArrayAccess;
 
@@ -233,7 +234,7 @@ abstract class DataContainer
 	 * @param   string  $key      view data key
 	 * @param   mixed   $default  default value
 	 * @return  mixed   view data value
-	 * @throws  \OutOutOfBoundsException  when the property is undefined
+	 * @throws  OutOfBoundsException  when the property is undefined
 	 */
 	public function __get($key)
 	{

@@ -26,12 +26,22 @@ class Handlebars extends AbstractParser
 	 */
 	protected $engine;
 
+	public function __construct($engine = null)
+	{
+		$this->engine = $engine;
+	}
+
 	protected function setupEngine()
 	{
 		$this->engine = new HandlebarsEngine();
+
 		$loader = new HandlebarsLoader($this->manager);
+
+		$partialLoader = new HandlebarsLoader($this->manager);
+		$partialLoader->setPrefix('_');
+
 		$this->engine->setLoader($loader);
-		$this->engine->setPartialsLoader($loader);
+		$this->engine->setPartialsLoader($partialLoader);
 	}
 
 	protected function getEngine()
