@@ -10,10 +10,10 @@
 
 namespace Fuel\Display;
 
+/**
+ * Implement this interface to whitelist your
+ * class for view data filtering
+ */
 interface Whitelisted
 {
-	/**
-	 * Implement this interface to whitelist your
-	 * class for view data filtering
-	 */
 }

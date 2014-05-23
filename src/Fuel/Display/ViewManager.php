@@ -10,36 +10,45 @@
 
 namespace Fuel\Display;
 
+use DomainException;
 use Fuel\FileSystem\Finder;
 use Fuel\Display\Parser\AbstractParser;
 
+/**
+ * Responsible for loading and parsing views.
+ *
+ * @package Fuel\Display
+ * @since   2.0
+ */
 class ViewManager extends DataContainer
 {
 	/**
-	 * @var  \Fuel\FileSystem\Finder  $finder
+	 * @var Finder $finder
 	 */
 	protected $finder;
 
 	/**
-	 * @var  \Fuel\Display\Parser\AbstractParser[]  parsers
+	 * @var AbstractParser[] Available view parsers
 	 */
 	protected $parsers = array();
 
 	/**
-	 * @var  string  view folder name prefix
+	 * @var string View folder name prefix
 	 */
 	public $viewFolder = 'views';
 
 	/**
-	 * @var  string  $cachePath  cache path
+	 * @var string $cachePath Cache path
 	 */
 	public $cachePath;
 
 	/**
 	 * Constructor
 	 *
-	 * @param   \Fuel\FileSystem\Finder  $finder
-	 * @param   array                       $config
+	 * @param  Finder $finder
+	 * @param  array  $config
+	 *
+	 * @since 2.0
 	 */
 	public function __construct(Finder $finder, array $config = array())
 	{
@@ -50,7 +59,9 @@ class ViewManager extends DataContainer
 	/**
 	 * Configure the view manager
 	 *
-	 * @param  array  $config
+	 * @param array $config
+	 *
+	 * @since 2.0
 	 */
 	protected function configure(array $config)
 	{
@@ -83,8 +94,10 @@ class ViewManager extends DataContainer
 	/**
 	 * Set the view folder
 	 *
-	 * @param   string  $folder  folder path
-	 * @return  $this
+	 * @param  string $folder Folder path
+	 * @return $this
+	 *
+	 * @since 2.0
 	 */
 	public function setViewFolder($folder)
 	{
@@ -93,6 +106,15 @@ class ViewManager extends DataContainer
 		return $this;
 	}
 
+	/**
+	 * Adds the given classes to the whitelist.
+	 *
+	 * @param string[] $classes
+	 *
+	 * @return $this
+	 *
+	 * @since 2.0
+	 */
 	public function whitelist($classes)
 	{
 		if ( ! is_array($classes))
@@ -105,6 +127,16 @@ class ViewManager extends DataContainer
 		return $this;
 	}
 
+	/**
+	 * Registers a new parser for rendering a given file type.
+	 *
+	 * @param string         $extension
+	 * @param AbstractParser $parser
+	 *
+	 * @return $this
+	 *
+	 * @since 2.0
+	 */
 	public function registerParser($extension, AbstractParser $parser)
 	{
 		$parser->setManager($this);
@@ -113,6 +145,15 @@ class ViewManager extends DataContainer
 		return $this;
 	}
 
+	/**
+	 * Registers multiple parsers at once.
+	 *
+	 * @param array $parsers Key as the file extension and value as the parser instance.
+	 *
+	 * @return $this
+	 *
+	 * @since 2.0
+	 */
 	public function registerParsers(array $parsers)
 	{
 		foreach ($parsers as $extension => $parser)
@@ -123,11 +164,25 @@ class ViewManager extends DataContainer
 		return $this;
 	}
 
+	/**
+	 * @return Finder
+	 *
+	 * @since 2.0
+	 */
 	public function getFinder()
 	{
 		return $this->finder;
 	}
 
+	/**
+	 * Sets the Finder instance that will be used to load views.
+	 *
+	 * @param Finder $finder
+	 *
+	 * @return $this
+	 *
+	 * @since 2.0
+	 */
 	public function setFinder(Finder $finder)
 	{
 		$this->finder = $finder;
@@ -135,6 +190,15 @@ class ViewManager extends DataContainer
 		return $this;
 	}
 
+	/**
+	 * Attempts to get the file name for the given view.
+	 *
+	 * @param $view
+	 *
+	 * @return array|\Fuel\FileSystem\Directory|\Fuel\FileSystem\File|string
+	 *
+	 * @since 2.0
+	 */
 	public function findView($view)
 	{
 		$view = $this->viewFolder.DIRECTORY_SEPARATOR.ltrim($view, DIRECTORY_SEPARATOR);
@@ -142,6 +206,20 @@ class ViewManager extends DataContainer
 		return $this->finder->findFileReversed($view);
 	}
 
+	/**
+	 * Attempts to find and load the given view.
+	 *
+	 * @param string    $view
+	 * @param array     $data
+	 * @param null|bool $filter
+	 *
+	 * @return View
+	 *
+	 * @throws ViewNotFoundException If the given view cannot be found
+	 * @throws DomainException       If a parser for the view cannot be found
+	 *
+	 * @since 2.0
+	 */
 	public function forge($view, array $data = null, $filter = null)
 	{
 		if ( ! $file = $this->findView($view))
@@ -158,7 +236,7 @@ class ViewManager extends DataContainer
 
 		if ( ! isset($this->parsers[$extension]))
 		{
-			throw new Exception('Could not find parser for extension: '.$extension);
+			throw new DomainException('Could not find parser for extension: '.$extension);
 		}
 
 		$parser = $this->parsers[$extension];
@@ -171,4 +249,5 @@ class ViewManager extends DataContainer
 
 		return $view;
 	}
+
 }

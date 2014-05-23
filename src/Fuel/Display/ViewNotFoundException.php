@@ -10,6 +10,8 @@
 
 namespace Fuel\Display;
 
+use Exception;
+
 class ViewNotFoundException extends Exception
 {
 
