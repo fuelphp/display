@@ -27,7 +27,7 @@ class Twig extends AbstractParser
 	}
 
 	/**
-	 * Setup the twig ennvironment
+	 * Setup the twig environment
 	 *
 	 * @return  \Twig_Environment
 	 */
@@ -44,7 +44,7 @@ class Twig extends AbstractParser
 	}
 
 	/**
-	 * Retrieve the twig ennvironment
+	 * Retrieve the twig environment
 	 *
 	 * @return  \Twig_Environment
 	 */

@@ -3,3 +3,5 @@ vendor
 .DS_Store
 .idea
 tests/_log/*
+templates_c
+cache
