@@ -19,19 +19,14 @@ namespace Fuel\Display;
 class Presenter extends DataContainer
 {
 	/**
-	 * @var \Fuel\Display\View $view
+	 * @var View $view
 	 */
 	protected $view;
 
 	/**
-	 * @var \Fuel\Display\ViewManager $manager
+	 * @var ViewManager $manager
 	 */
 	protected $manager;
-
-	/**
-	 * @var \Fuel\Foundation\Request $request
-	 */
-	protected $request;
 
 	/**
 	 * @var boolean $autoFilter
@@ -73,8 +68,6 @@ class Presenter extends DataContainer
 		{
 			$this->setView($view);
 		}
-
-		$this->request = \Request::getInstance();
 	}
 
 	/**

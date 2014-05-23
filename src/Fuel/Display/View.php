@@ -14,6 +14,7 @@ use Fuel\Display\Parser\AbstractParser;
 
 class View extends DataContainer
 {
+
 	/**
 	 * @var  string  $file
 	 */
