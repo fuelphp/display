@@ -21,11 +21,19 @@
 		"fuelphp/common": "dev-master"
 	},
 	"require-dev": {
+		"codeception/codeception": "1.8.*",
+		"codeception/mockery-module": "dev-master",
 		"mockery/mockery": "0.7.*",
 		"twig/twig": "1.*",
 		"mustache/mustache": "2.3.*",
 		"dflydev/markdown": "1.0.*",
 		"smarty/smarty": "3.1.*"
+	},
+	"suggest": {
+		"twig/twig": "Allow Twig templating with the Display pakcage",
+		"mustache/mustache": "Allow Mustache templating with the Display pakcage",
+		"dflydev/markdown": "Allow Markdown templating with the Display pakcage",
+		"smarty/smarty": "Allow Smarty templating with the Display pakcage"
 	},
 	"minimum-stability": "dev"
 }
