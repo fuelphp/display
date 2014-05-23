@@ -23,6 +23,11 @@ class Markdown extends AbstractParser
 {
 
 	/**
+	 * @var MarkdownParser
+	 */
+	protected $markdown;
+
+	/**
 	 * @param MarkdownParser $parser
 	 *
 	 * @since 2.0
