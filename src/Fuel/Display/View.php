@@ -20,27 +20,22 @@ class View extends DataContainer
 	protected $file;
 
 	/**
-	 * @var \Fuel\Display\Parser\AbstractParser  $parser
+	 * @var AbstractParser $parser
 	 */
 	protected $parser;
 
 	/**
-	 * @var \Fuel\Display\ViewManager  $manager
+	 * @var ViewManager $manager
 	 */
 	protected $manager;
 
 	/**
-	 * @var boolean  $filter
-	 */
-	protected $autoFilter = false;
-
-	/**
-	 * Constructor
+	 * @param ViewManager    $manager
+	 * @param AbstractParser $parser
+	 * @param string         $file
+	 * @param bool           $filter
 	 *
-	 * @param  \Fuel\Display\ViewManager  $manager
-	 * @param  \Fuel\Display\Parser\AbstractParser  $parser
-	 * @param  string  $file
-	 * @param  boolean  $filter
+	 * @since 2.0
 	 */
 	public function __construct(ViewManager $manager, AbstractParser $parser, $file, $filter)
 	{
@@ -51,9 +46,11 @@ class View extends DataContainer
 	}
 
 	/**
-	 * Trieve all viewdata from the view and the manager
+	 * Retrieve all view data from the view and the manager
 	 *
-	 * @return  array  view data
+	 * @return array View data
+	 *
+	 * @since 2.0
 	 */
 	public function getData()
 	{
@@ -64,14 +61,18 @@ class View extends DataContainer
 	}
 
 	/**
-	 * Render the view
+	 * Render the view.
 	 *
-	 * @param   array  additional viewdata
-	 * @return  string  rendered view
+	 * @param array $data additional view data
+	 *
+	 * @return string Rendered view
+	 *
+	 * @since 2.0
 	 */
 	public function render(array $data = null)
 	{
-		if ($data) {
+		if ($data !== null)
+		{
 			$this->set($data);
 		}
 
@@ -81,7 +82,9 @@ class View extends DataContainer
 	/**
 	 * Render the view
 	 *
-	 * @return  string  rendered view
+	 * @return string rendered view
+	 *
+	 * @since 2.0
 	 */
 	public function __toString()
 	{

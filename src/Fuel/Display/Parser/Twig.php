@@ -12,14 +12,25 @@ namespace Fuel\Display\Parser;
 
 use Twig_Environment;
 
+/**
+ * Allows twig templates to be parsed as views
+ *
+ * @package Fuel\Display\Parser
+ *
+ * @since 2.0
+ */
 class Twig extends AbstractParser
 {
+
+	/**
+	 * @var Twig_Environment
+	 */
 	protected $twig;
 
 	/**
-	 * Constructor
+	 * @param Twig_Environment $twig
 	 *
-	 * @param \Twig_Environment  $twig
+	 * @since 2.0
 	 */
 	public function __construct(Twig_Environment $twig = null)
 	{
@@ -29,14 +40,17 @@ class Twig extends AbstractParser
 	/**
 	 * Setup the twig environment
 	 *
-	 * @return  \Twig_Environment
+	 * @return Twig_Environment
+	 *
+	 * @since 2.0
 	 */
 	public function setupTwig()
 	{
 		$twigLoader = new TwigLoader($this->manager);
 		$config = array();
 
-		if ($this->manager->cachePath) {
+		if ($this->manager->cachePath)
+		{
 			$config['cache'] = $this->manager->cachePath.'twig/';
 		}
 
@@ -46,7 +60,9 @@ class Twig extends AbstractParser
 	/**
 	 * Retrieve the twig environment
 	 *
-	 * @return  \Twig_Environment
+	 * @return Twig_Environment
+	 *
+	 * @since 2.0
 	 */
 	public function getTwig()
 	{
@@ -61,9 +77,12 @@ class Twig extends AbstractParser
 	/**
 	 * Parse the view
 	 *
-	 * @param   string  $file  path to view file
-	 * @param   array   $data  view data
-	 * @return  string  parsed view
+	 * @param string $file Path to view file
+	 * @param array  $data View data
+	 *
+	 * @return string Parsed view
+	 *
+	 * @since 2.0
 	 */
 	public function parse($file, array $data)
 	{
@@ -71,4 +90,5 @@ class Twig extends AbstractParser
 
 		return $twig->render($file, $data);
 	}
+
 }

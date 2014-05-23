@@ -12,36 +12,24 @@ namespace Fuel\Display\Parser;
 
 use dflydev\markdown\MarkdownExtraParser;
 
-class MarkdownExtra extends AbstractParser
+/**
+ * Allows the parsing of view files using MarkdownExtra
+ *
+ * @package Fuel\Display\Parser
+ *
+ * @since 2.0
+ */
+class MarkdownExtra extends Markdown
 {
+
 	/**
-	 * Constructor
+	 * @param MarkdownExtraParser $parser
 	 *
-	 * @param  \dflydev\markdown\MarkdownExtraParser  $parser
+	 * @since 2.0
 	 */
 	public function __construct(MarkdownExtraParser $parser = null)
 	{
-		$this->markdown = $parser ?: new MarkdownExtraParser;
+		parent::__construct($parser);
 	}
 
-	/**
-	 * Parse the view
-	 *
-	 * @param   string  $file  path to view file
-	 * @param   array   $data  view data
-	 * @return  string  parsed view
-	 */
-	public function parse($file, array $data)
-	{
-		if (file_exists($file))
-		{
-			$contents = file_get_contents($file);
-		}
-		else
-		{
-			$contents = $file;
-		}
-
-		return $this->markdown->transformMarkdown($contents);
-	}
 }

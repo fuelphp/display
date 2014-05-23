@@ -11,7 +11,7 @@
 namespace Fuel\Display;
 
 /**
- * can be implemented by classes that provide internal data sanitation logic
+ * Can be implemented by classes that provide internal data sanitation logic
  */
 interface Sanitize
 {

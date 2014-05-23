@@ -18,18 +18,18 @@ $finder = $manager->getFinder();
 $manager->set('global', 'message');
 $finder->addPath(__DIR__);
 
-//$manager->registerParser('php', new PhpParser);
-//$manager->registerParser('twig', new TwigParser);
-//$manager->registerParser('mustache', new MustacheParser);
-//$manager->registerParser('md', new MarkdownParser);
-//$manager->registerParser('mde', new MarkdownExtraParser);
-//$manager->registerParser('tpl', new SmartyParser);
-//
-//echo $manager->forge('test.twig', array('name' => 'Frank'))->render();
-//echo $manager->forge('test.mustache', array('name' => 'Mr. Mustache!'));
-//echo $manager->forge('test.md')->render();
-//echo $manager->forge('test.mde');
-//echo $manager->forge('test.tpl', array('what' => 'Pants'))->render();
+$manager->registerParser('php', new PhpParser);
+$manager->registerParser('twig', new TwigParser);
+$manager->registerParser('mustache', new MustacheParser);
+$manager->registerParser('md', new MarkdownParser);
+$manager->registerParser('mde', new MarkdownExtraParser);
+$manager->registerParser('tpl', new SmartyParser);
+
+echo $manager->forge('test.twig', array('name' => 'Frank'))->render();
+echo $manager->forge('test.mustache', array('name' => 'Mr. Mustache!'));
+echo $manager->forge('test.md')->render();
+echo $manager->forge('test.mde');
+echo $manager->forge('test.tpl', array('what' => 'Pants'))->render();
 
 $manager->registerParser('handlebars', new \Fuel\Display\Parser\Handlebars());
 echo $manager->forge('partial_container.handlebars', ['names' => [
