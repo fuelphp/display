@@ -11,8 +11,8 @@
 		}
 	],
 	"autoload": {
-		"psr-0": {
-			"Fuel\\Display": "src"
+		"psr-4": {
+			"Fuel\\Display\\": "src/"
 		}
 	},
 	"require": {
@@ -37,5 +37,4 @@
 		"smarty/smarty": "Allow Smarty templating with the Display package",
 		"xamin/handlebars.php": "Allow Handlebars templating with the Display package"
 	},
-	"minimum-stability": "dev"
 }
