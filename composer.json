@@ -36,5 +36,5 @@
 		"dflydev/markdown": "Allow Markdown templating with the Display package",
 		"smarty/smarty": "Allow Smarty templating with the Display package",
 		"xamin/handlebars.php": "Allow Handlebars templating with the Display package"
-	},
+	}
 }
