@@ -26,7 +26,16 @@ class FuelServiceProvider extends ServiceProvider
 	/**
 	 * @var  array  list of service names provided by this provider
 	 */
-	public $provides = array('viewmanager', 'parser.php', 'parser.markdown', 'parser.mustache', 'parser.twig', 'parser.smarty', 'parser.handlebars');
+	public $provides = array(
+		'viewmanager',
+		'parser.php',
+		'parser.markdown',
+		'parser.mustache',
+		'parser.twig',
+		'parser.smarty',
+		'parser.handlebars',
+		'parser.hbs',
+	);
 
 	/**
 	 * Service provider definitions
@@ -69,8 +78,14 @@ class FuelServiceProvider extends ServiceProvider
 			return $dic->resolve('Fuel\Display\Parser\Smarty');
 		});
 
-		// \Fuel\Display\Parser\Smarty
+		// \Fuel\Display\Parser\Handlebars
 		$this->register('parser.handlebars', function ($dic)
+		{
+			return $dic->resolve('Fuel\Display\Parser\Handlebars');
+		});
+
+		// \Fuel\Display\Parser\Handlebars - alternate .hbs
+		$this->register('parser.hbs', function ($dic)
 		{
 			return $dic->resolve('Fuel\Display\Parser\Handlebars');
 		});
