@@ -129,6 +129,22 @@ abstract class DataContainer
 	}
 
 	/**
+	 * isset magic method
+	 */
+	public function __isset($key)
+	{
+		return isset($this->data[$key]);
+	}
+
+	/**
+	 * unset magic method
+	 */
+	public function __unset($key)
+	{
+		unset($this->data[$key]);
+	}
+
+	/**
 	 * Set view data
 	 *
 	 * @param   string|array  key or view data array
