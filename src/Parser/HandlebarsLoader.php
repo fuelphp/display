@@ -36,7 +36,7 @@ class HandlebarsLoader implements Loader
 	 */
 	public function load($name)
 	{
-		if (substr($name, -11) !== '.handlebars')
+		if (substr($name, -11) !== '.handlebars' && substr($name, -4) !== '.hbs')
 		{
 			$name = $this->prefix . $name . '.handlebars';
 		}
