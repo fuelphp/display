@@ -23,7 +23,6 @@
 	"require-dev": {
 		"codeception/codeception": "1.8.*",
 		"codeception/mockery-module": "dev-master",
-		"mockery/mockery": "0.7.*",
 		"twig/twig": "1.*",
 		"mustache/mustache": "2.3.*",
 		"dflydev/markdown": "1.0.*",
