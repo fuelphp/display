@@ -11,22 +11,21 @@
 namespace Fuel\Display\Providers;
 
 use Fuel\FileSystem\Finder;
-
 use Fuel\Dependency\ServiceProvider;
 
 /**
  * FuelPHP ServiceProvider class for this package
  *
- * @package  Fuel\Display
+ * @package Fuel\Display
  *
- * @since  1.0.0
+ * @since 2.0.0
  */
 class FuelServiceProvider extends ServiceProvider
 {
 	/**
-	 * @var  array  list of service names provided by this provider
+	 * @var array list of service names provided by this provider
 	 */
-	public $provides = array(
+	public $provides = [
 		'viewmanager',
 		'parser.php',
 		'parser.markdown',
@@ -35,7 +34,7 @@ class FuelServiceProvider extends ServiceProvider
 		'parser.smarty',
 		'parser.handlebars',
 		'parser.hbs',
-	);
+	];
 
 	/**
 	 * Service provider definitions
@@ -43,9 +42,9 @@ class FuelServiceProvider extends ServiceProvider
 	public function provide()
 	{
 		// \Fuel\Display\ViewManager
-		$this->register('viewmanager', function ($dic, Finder $finder, array $config = array())
+		$this->register('viewmanager', function ($dic, Finder $finder, array $config = [])
 		{
-			return $dic->resolve('Fuel\Display\ViewManager', array($finder, $config));
+			return $dic->resolve('Fuel\Display\ViewManager', [$finder, $config]);
 		});
 
 		// \Fuel\Display\Parser\Php
