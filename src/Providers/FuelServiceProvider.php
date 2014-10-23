@@ -59,16 +59,16 @@ class FuelServiceProvider extends ServiceProvider
 			return $dic->resolve('Fuel\Display\Parser\Markdown');
 		});
 
-		// \Fuel\Display\Parser\MustacheLoader
+		// \Fuel\Display\Parser\Mustache
 		$this->register('parser.mustache', function ($dic)
 		{
-			return $dic->resolve('Fuel\Display\Parser\MustacheLoader');
+			return $dic->resolve('Fuel\Display\Parser\Mustache');
 		});
 
-		// \Fuel\Display\Parser\TwigLoader
+		// \Fuel\Display\Parser\Twig
 		$this->register('parser.twig', function ($dic)
 		{
-			return $dic->resolve('Fuel\Display\Parser\TwigLoader');
+			return $dic->resolve('Fuel\Display\Parser\Twig');
 		});
 
 		// \Fuel\Display\Parser\Smarty
