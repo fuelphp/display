@@ -67,7 +67,7 @@ class FuelServiceProvider extends ServiceProvider
 		});
 
 		// \Fuel\Display\Parser\TwigLoader
-		$this->register('parser.tiwg', function ($dic)
+		$this->register('parser.twig', function ($dic)
 		{
 			return $dic->resolve('Fuel\Display\Parser\TwigLoader');
 		});
