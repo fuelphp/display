@@ -11,22 +11,21 @@
 namespace Fuel\Display\Providers;
 
 use Fuel\FileSystem\Finder;
-
 use Fuel\Dependency\ServiceProvider;
 
 /**
  * FuelPHP ServiceProvider class for this package
  *
- * @package  Fuel\Display
+ * @package Fuel\Display
  *
- * @since  1.0.0
+ * @since 2.0.0
  */
 class FuelServiceProvider extends ServiceProvider
 {
 	/**
-	 * @var  array  list of service names provided by this provider
+	 * @var array list of service names provided by this provider
 	 */
-	public $provides = array(
+	public $provides = [
 		'viewmanager',
 		'parser.php',
 		'parser.markdown',
@@ -35,7 +34,7 @@ class FuelServiceProvider extends ServiceProvider
 		'parser.smarty',
 		'parser.handlebars',
 		'parser.hbs',
-	);
+	];
 
 	/**
 	 * Service provider definitions
@@ -43,9 +42,9 @@ class FuelServiceProvider extends ServiceProvider
 	public function provide()
 	{
 		// \Fuel\Display\ViewManager
-		$this->register('viewmanager', function ($dic, Finder $finder, array $config = array())
+		$this->register('viewmanager', function ($dic, Finder $finder, array $config = [])
 		{
-			return $dic->resolve('Fuel\Display\ViewManager', array($finder, $config));
+			return $dic->resolve('Fuel\Display\ViewManager', [$finder, $config]);
 		});
 
 		// \Fuel\Display\Parser\Php
@@ -60,16 +59,16 @@ class FuelServiceProvider extends ServiceProvider
 			return $dic->resolve('Fuel\Display\Parser\Markdown');
 		});
 
-		// \Fuel\Display\Parser\MustacheLoader
+		// \Fuel\Display\Parser\Mustache
 		$this->register('parser.mustache', function ($dic)
 		{
-			return $dic->resolve('Fuel\Display\Parser\MustacheLoader');
+			return $dic->resolve('Fuel\Display\Parser\Mustache');
 		});
 
-		// \Fuel\Display\Parser\TwigLoader
-		$this->register('parser.tiwg', function ($dic)
+		// \Fuel\Display\Parser\Twig
+		$this->register('parser.twig', function ($dic)
 		{
-			return $dic->resolve('Fuel\Display\Parser\TwigLoader');
+			return $dic->resolve('Fuel\Display\Parser\Twig');
 		});
 
 		// \Fuel\Display\Parser\Smarty
