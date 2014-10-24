@@ -165,6 +165,33 @@ class ViewManager extends DataContainer
 	}
 
 	/**
+	 * Returns the parsers.
+	 *
+	 * @return AbstractParser[]
+	 *
+	 * @since 2.0
+	 */
+	public function getParsers()
+	{
+		return $this->parsers;
+	}
+
+	/**
+	 * Returns a parser by extension.
+	 *
+	 * @return AbstractParser|null
+	 *
+	 * @since 2.0
+	 */
+	public function getParser($extension)
+	{
+		if (isset($this->parsers[$extension]))
+		{
+			return $this->parsers[$extension];
+		}
+	}
+
+	/**
 	 * @return Finder
 	 *
 	 * @since 2.0
