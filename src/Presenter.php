@@ -140,13 +140,6 @@ class Presenter extends DataContainer
 	 */
 	public function __toString()
 	{
-		try
-		{
-			return $this->render();
-		}
-		catch (\Exception $e)
-		{
-			var_dump($e);die();
-		}
+		return $this->render();
 	}
 }
