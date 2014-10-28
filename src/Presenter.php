@@ -112,7 +112,7 @@ class Presenter extends DataContainer
 	 *
 	 * @since 2.0
 	 */
-	public function render(Array $data = null)
+	public function render(Array $data = array())
 	{
 		// run the methods
 		$this->before();
@@ -140,6 +140,13 @@ class Presenter extends DataContainer
 	 */
 	public function __toString()
 	{
-		return $this->render();
+		try
+		{
+			return $this->render();
+		}
+		catch (\Exception $e)
+		{
+			var_dump($e);die();
+		}
 	}
 }

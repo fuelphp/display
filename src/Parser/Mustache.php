@@ -84,11 +84,11 @@ class Mustache extends AbstractParser
 	 *
 	 * @since 2.0
 	 */
-	public function parse($file, array $data)
+	public function parse($file, Array $data = null)
 	{
 		$mustache = $this->getMustache();
 
-		return $mustache->render($file, $data);
+		return $mustache->render($file, $data ?: $this->getData());
 	}
 
 }

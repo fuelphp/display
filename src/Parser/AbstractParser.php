@@ -40,5 +40,5 @@ abstract class AbstractParser extends DataContainer
 	 * @param   array   $data  view data
 	 * @return  string  parsed view
 	 */
-	abstract public function parse($file, array $data);
+	abstract public function parse($file, Array $data = null);
 }

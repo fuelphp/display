@@ -68,11 +68,11 @@ class Smarty extends AbstractParser
 	 * @param   array   $data  view data
 	 * @return  string  parsed view
 	 */
-	public function parse($file, array $data)
+	public function parse($file, Array $data = null)
 	{
 		$smarty = $this->getSmarty();
 		$template = $smarty->createTemplate($file);
-		$template->assign($data);
+		$template->assign($data ?: $this->getData());
 
 		return $template->fetch();
 	}

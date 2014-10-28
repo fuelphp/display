@@ -70,14 +70,16 @@ class View extends DataContainer
 	 *
 	 * @since 2.0
 	 */
-	public function render(array $data = null)
+	public function render(array $data = array())
 	{
 		if ($data !== null)
 		{
 			$this->set($data);
 		}
 
-		return $this->parser->parse($this->file, $this->getData());
+		$this->parser->set($this);
+
+		return $this->parser->parse($this->file);
 	}
 
 	/**

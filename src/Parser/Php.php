@@ -21,7 +21,7 @@ class Php extends AbstractParser
 	 * @param   array   $data  view data
 	 * @return  string  parsed view
 	 */
-	public function parse($file, array $data)
+	public function parse($file, Array $data = null)
 	{
 		$obCleanRoom = function ($__file, $__data)
 		{
@@ -46,6 +46,6 @@ class Php extends AbstractParser
 			return ob_get_clean();
 		};
 
-		return $obCleanRoom($file, $data);
+		return $obCleanRoom($file, $data ?: $this->getData());
 	}
 }
