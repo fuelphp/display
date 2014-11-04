@@ -1,6 +1,5 @@
 {
 	"name": "fuelphp/display",
-	"type": "library",
 	"description": "FuelPHP Display and templating.",
 	"homepage": "https://github.com/fuelphp/display",
 	"license": "MIT",
@@ -10,11 +9,6 @@
 			"email": "team@fuelphp.com"
 		}
 	],
-	"autoload": {
-		"psr-4": {
-			"Fuel\\Display\\": "src/"
-		}
-	},
 	"require": {
 		"php": ">=5.4",
 		"fuelphp/filesystem": "dev-master",
@@ -28,6 +22,11 @@
 		"dflydev/markdown": "1.0.*",
 		"smarty/smarty": "3.1.*",
 		"xamin/handlebars.php": "dev-master"
+	},
+	"autoload": {
+		"psr-4": {
+			"Fuel\\Display\\": "src/"
+		}
 	},
 	"suggest": {
 		"twig/twig": "Allow Twig templating with the Display package",
