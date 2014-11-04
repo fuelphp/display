@@ -21,7 +21,7 @@
 		"fuelphp/common": "dev-master"
 	},
 	"require-dev": {
-		"codeception/codeception": "~2.0",
+		"codeception/codeception": "~2.0.0",
 		"codeception/mockery-module": "dev-master",
 		"twig/twig": "1.*",
 		"mustache/mustache": "2.3.*",

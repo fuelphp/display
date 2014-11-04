@@ -2,6 +2,7 @@ composer.lock
 vendor
 .DS_Store
 .idea
-tests/_log/*
+tests/_output/*
 templates_c
 cache
+codeception.yml
