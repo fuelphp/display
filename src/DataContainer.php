@@ -10,9 +10,9 @@
 
 namespace Fuel\Display;
 
-use Closure;
-use OutOfBoundsException;
+use Fuel\Common\DataContainer as Container;
 use ArrayAccess;
+use RuntimeException;
 
 /**
  * Contains view data
@@ -21,14 +21,16 @@ use ArrayAccess;
  *
  * @since 2.0
  */
-abstract class DataContainer
+abstract class DataContainer extends Container
 {
 	/**
-	 * @var array
-	 */
-	protected $data = [];
-
-	/**
+	 * Stores information about data should be filtered or not
+	 *
+	 * Can have three values:
+	 * - true: filter it
+	 * - false: don't filter it
+	 * - null: use the autoFilter
+	 *
 	 * @var array
 	 */
 	protected $filterIndex = [];
@@ -51,6 +53,22 @@ abstract class DataContainer
 	];
 
 	/**
+	 * Sets the auto filter setting
+	 *
+	 * @param boolean $filter
+	 *
+	 * @return $this
+	 *
+	 * @since 2.0
+	 */
+	public function autoFilter($filter = true)
+	{
+		$this->autoFilter = $filter;
+
+		return $this;
+	}
+
+	/**
 	 * Retrieves all the view data
 	 *
 	 * @return array
@@ -63,14 +81,12 @@ abstract class DataContainer
 
 		foreach ($data as $key => $value)
 		{
-			if (is_object($value) and in_array(get_class($value), $this->whitelist))
+			if (is_object($value) and $this->isWhitelisted($value))
 			{
-				$data[$key] = $value;
-
 				continue;
 			}
 
-			if ($this->filterIndex[$key])
+			if ($this->shouldBeFiltered($key))
 			{
 				if ($value instanceOf Sanitize)
 				{
@@ -80,14 +96,49 @@ abstract class DataContainer
 				{
 					$data[$key] = $this->filter($value);
 				}
-
-				continue;
 			}
-
-			$data[$key] = $value;
 		}
 
 		return $data;
+	}
+
+	/**
+	 * Checks if a key should be filtered or not
+	 *
+	 * Uses filterIndex and autoFilter
+	 *
+	 * @param string $key
+	 *
+	 * @return boolean
+	 */
+	private function shouldBeFiltered($key)
+	{
+		if (isset($this->filterIndex[$key]))
+		{
+			return $this->filterIndex[$key];
+		}
+
+		return $this->autoFilter;
+	}
+
+	/**
+	 * Checks if an object is whitelisted
+	 *
+	 * @param object $object
+	 *
+	 * @return boolean
+	 */
+	private function isWhitelisted($object)
+	{
+		foreach ($this->whitelist as $whitelisted)
+		{
+			if ($object instanceof $whitelisted)
+			{
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	/**
@@ -110,6 +161,41 @@ abstract class DataContainer
 	}
 
 	/**
+	 * Sets view data
+	 *
+	 * @param string|array $key
+	 * @param mixed        $value
+	 * @param boolean      $filter
+	 *
+	 * @return $this
+	 *
+	 * @since 2.0
+	 */
+	public function set($key, $value = null, $filter = null)
+	{
+		parent::set($key, $value);
+
+		if (is_array($key))
+		{
+			if (is_bool($value))
+			{
+				$filter = $value;
+			}
+
+			foreach ($key as $_key => $_value)
+			{
+				$this->filterIndex[$_key] = $filter;
+			}
+		}
+		else
+		{
+			$this->filterIndex[$key] = $filter;
+		}
+
+		return $this;
+	}
+
+	/**
 	 * Removes all the view data
 	 *
 	 * @return $this
@@ -118,7 +204,7 @@ abstract class DataContainer
 	 */
 	public function clearData()
 	{
-		$this->data = [];
+		$this->setContents([]);
 		$this->filterIndex = [];
 
 		return $this;
@@ -142,80 +228,6 @@ abstract class DataContainer
 	}
 
 	/**
-	 * Sets the auto filter setting
-	 *
-	 * @param boolean $filter
-	 *
-	 * @return $this
-	 *
-	 * @since 2.0
-	 */
-	public function autoFilter($filter = true)
-	{
-		$this->autoFilter = $filter;
-
-		return $this;
-	}
-
-	/**
-	 * isset magic method
-	 */
-	public function __isset($key)
-	{
-		return isset($this->data[$key]);
-	}
-
-	/**
-	 * unset magic method
-	 */
-	public function __unset($key)
-	{
-		unset($this->data[$key]);
-	}
-
-	/**
-	 * Sets view data
-	 *
-	 * @param string|array  $key
-	 * @param mixed         $value
-	 * @param boolean       $filter
-	 *
-	 * @return $this
-	 *
-	 * @since 2.0
-	 */
-	public function set($key, $value = null, $filter = null)
-	{
-		if ($key instanceOf DataContainer)
-		{
-			$this->data = $key->data;
-			$this->filterIndex = $key->filterIndex;
-		}
-
-		elseif ( ! is_array($key))
-		{
-			$this->data[$key] = $value;
-			$this->filterIndex[$key] = $filter === null ? $this->autoFilter : $filter;
-		}
-
-		else
-		{
-			if (is_bool($value))
-			{
-				$filter = $value;
-			}
-
-			foreach ($key as $_key => $_value)
-			{
-				$this->data[$_key] = $_value;
-				$this->filterIndex[$_key] = $filter === null ? $this->autoFilter : $filter;
-			}
-		}
-
-		return $this;
-	}
-
-	/**
 	 * Assigns a value by reference. The benefit of binding is that values can
 	 * be altered without re-setting them. It is also possible to bind variables
 	 * before they have values. Assigned values will be available as a
@@ -228,14 +240,20 @@ abstract class DataContainer
 	 * @param mixed   $value  Referenced variable
 	 * @param boolean $filter Whether to filter the var on output
 	 *
-	 * @return  $this
+	 * @return $this
 	 *
 	 * @since 2.0
 	 */
 	public function bind($key, &$value, $filter = null)
 	{
-		$this->filterIndex[$key] = $filter === null ? $this->autoFilter : $filter;
+		if ($this->readOnly)
+		{
+			throw new RuntimeException('Changing values on this Data Container is not allowed.');
+		}
+
 		$this->data[$key] =& $value;
+		$this->filterIndex[$key] = $filter;
+		$this->isModified = true;
 
 		return $this;
 	}
@@ -253,56 +271,5 @@ abstract class DataContainer
 	public function setSafe($key, $value = null)
 	{
 		return $this->set($key, $value, false);
-	}
-
-	/**
-	 * Returns data from the container
-	 *
-	 * @param string $key
-	 * @param mixed  $default
-	 *
-	 * @return mixed
-	 *
-	 * @since 2.0
-	 */
-	public function get($key, $default = null)
-	{
-		if ( ! isset($this->data[$key]))
-		{
-			return $default instanceof Closure ? $default() : $default;
-		}
-
-		return $this->data[$key];
-	}
-
-	/**
-	 * Magic setter
-	 *
-	 * @param string $key
-	 * @param mixed  $default
-	 */
-	public function __set($key, $value)
-	{
-		$this->set($key, $value);
-	}
-
-	/**
-	 * Magic getter
-	 *
-	 * @param string $key
-	 * @param mixed  $default
-	 *
-	 * @return mixed
-	 *
-	 * @throws OutOfBoundsException  If the property is undefined
-	 */
-	public function __get($key)
-	{
-		$default = function() use ($key)
-		{
-			throw new OutOfBoundsException('Access to undefined property: '.$key);
-		};
-
-		return $this->get($key, $default);
 	}
 }

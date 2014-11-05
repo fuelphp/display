@@ -10,18 +10,18 @@
 
 namespace Fuel\Display;
 
-
 use Codeception\TestCase\Test;
 
 /**
  * Tests for View
  *
  * @package Fuel\Display
+ *
  * @coversDefaultClass Fuel\Display\View
+ * @group              Display
  */
 class ViewTest extends Test
 {
-
 	/**
 	 * @var \Mockery\Mock
 	 */
@@ -48,7 +48,6 @@ class ViewTest extends Test
 	/**
 	 * @covers ::getData
 	 * @covers ::__construct
-	 * @group  Display
 	 */
 	public function testGetData()
 	{
@@ -70,7 +69,6 @@ class ViewTest extends Test
 
 	/**
 	 * @covers ::render
-	 * @group  Display
 	 */
 	public function testRender()
 	{
@@ -90,7 +88,6 @@ class ViewTest extends Test
 
 	/**
 	 * @covers ::render
-	 * @group  Display
 	 */
 	public function testRenderWithData()
 	{
@@ -114,7 +111,6 @@ class ViewTest extends Test
 
 	/**
 	 * @covers ::__toString
-	 * @group  Display
 	 */
 	public function testRenderWithToString()
 	{
@@ -131,5 +127,4 @@ class ViewTest extends Test
 
 		$result = (string) $this->view;
 	}
-
 }
