@@ -94,6 +94,38 @@ class ContainerTest extends Test
 	}
 
 	/**
+	 * @covers ::merge
+	 */
+	public function testMerge()
+	{
+		$container = new ContainerStub;
+
+		$sanitize = \Mockery::mock('Fuel\Display\Sanitize');
+
+		$sanitize
+			->shouldReceive('sanitizeObject')
+			->once()
+			->andReturn('sanitized');
+
+		$container->set([
+			'sanitize' => $sanitize,
+			'foo'      => 'bar',
+		], true);
+
+		$this->container->set('foo', 'not_bar', false);
+
+		$this->container->merge(['foo' => 'still_not_bar'], $container);
+
+		$this->assertEquals(
+			[
+			'sanitize' => 'sanitized',
+			'foo' => 'bar',
+			],
+			$this->container->getData()
+		);
+	}
+
+	/**
 	 * @covers            ::bind
 	 * @expectedException RuntimeException
 	 */

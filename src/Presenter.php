@@ -54,9 +54,10 @@ class Presenter extends DataContainer
 	public function after() {}
 
 	/**
-	 * @param string  $method Method to call before rendering the Presenter view
-	 * @param boolean $filter Whether or not to auto filter the view variables
-	 * @param string  $view
+	 * @param ViewManager $manager
+	 * @param string      $method Method to call before rendering the Presenter view
+	 * @param boolean     $filter Whether or not to auto filter the view variables
+	 * @param string      $view
 	 *
 	 * @since 2.0
 	 */
@@ -101,7 +102,7 @@ class Presenter extends DataContainer
 		$this->view = $view;
 
 		// construct the view if needed
-		if ( ! $this->view instanceof \Fuel\Display\View)
+		if ( ! $this->view instanceof View)
 		{
 			$this->view = $this->manager->forge($this->view);
 		}
@@ -131,7 +132,7 @@ class Presenter extends DataContainer
 		$this->after();
 
 		// transfer the presenter data to the view
-		$this->view->set($this);
+		$this->view->merge($this);
 
 		// render the view
 		return $this->view->render($data);

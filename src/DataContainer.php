@@ -196,6 +196,30 @@ abstract class DataContainer extends Container
 	}
 
 	/**
+	 * {@inheritdoc}
+	 */
+	public function merge($arg)
+	{
+		call_user_func_array('parent::merge', func_get_args());
+
+		$arguments = array_map(function ($array) use (&$valid)
+		{
+			if ($array instanceof DataContainer)
+			{
+				return $array->filterIndex;
+			}
+
+			return [];
+
+		}, func_get_args());
+
+		array_unshift($arguments, $this->filterIndex);
+		$this->filterIndex = call_user_func_array('array_merge', $arguments);
+
+		return $this;
+	}
+
+	/**
 	 * Removes all the view data
 	 *
 	 * @return $this
