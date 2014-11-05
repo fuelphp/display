@@ -65,7 +65,7 @@ class HandlebarsLoader extends AbstractLoader implements Loader
 			throw new ViewNotFoundException('Could not locate: '.$name);
 		}
 
-		return $file
+		return $file;
 	}
 
 	/**
