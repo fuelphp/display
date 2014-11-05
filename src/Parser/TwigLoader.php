@@ -14,29 +14,19 @@ use Twig_Error_Loader;
 use Twig_LoaderInterface;
 use Fuel\Display\ViewManager;
 
-class TwigLoader implements Twig_LoaderInterface
+/**
+ * Custom Twig loader
+ *
+ * @package Fuel\Display
+ *
+ * @since 2.0
+ */
+class TwigLoader extends AbstractLoader implements Twig_LoaderInterface
 {
 	/**
-	 * @var  \Fuel\Display\ViewManager  $manager
-	 */
-	protected $manager;
-
-	/**
-	 * Constructor
+	 * {@inheritdoc}
 	 *
-	 * @param  \Fuel\Display\ViewManager  $manager
-	 */
-	public function __construct(ViewManager $manager)
-	{
-		$this->manager = $manager;
-	}
-
-	/**
-	 * Locate a view file
-	 *
-	 * @param   string  $name
-	 * @return  string  path to file
-	 * @throws  \Twig_Error_Loader when the view is not found
+	 * @throws Twig_Error_Loader If the view is not found
 	 */
 	public function findView($name)
 	{
@@ -45,12 +35,7 @@ class TwigLoader implements Twig_LoaderInterface
 			$name .= '.twig';
 		}
 
-		if (file_exists($name))
-		{
-			return $name;
-		}
-
-		if ( ! $file = $this->manager->findView($name))
+		if ( ! $file = parent::findView($name))
 		{
 			throw new Twig_Error_Loader('Could not locate: '.$name);
 		}
@@ -59,11 +44,7 @@ class TwigLoader implements Twig_LoaderInterface
 	}
 
 	/**
-	 * Gets the source code of a template, given its name.
-	 *
-	 * @param string $name The name of the template to load
-	 * @return string The template source code
-	 * @throws Twig_Error_Loader When $name is not found
+	 * {@inheritdoc}
 	 */
 	public function getSource($name)
 	{
@@ -73,11 +54,7 @@ class TwigLoader implements Twig_LoaderInterface
 	}
 
 	/**
-	 * Gets the cache key to use for the cache for a given template name.
-	 *
-	 * @param string $name The name of the template to load
-	 * @return string The cache key
-	 * @throws Twig_Error_Loader When $name is not found
+	 * {@inheritdoc}
 	 */
 	public function getCacheKey($name)
 	{
@@ -85,12 +62,7 @@ class TwigLoader implements Twig_LoaderInterface
 	}
 
 	/**
-	 * Returns true if the template is still fresh.
-	 *
-	 * @param string    $name The template name
-	 * @param timestamp $time The last modification time of the cached template
-	 * @return Boolean true if the template is fresh, false otherwise
-	 * @throws Twig_Error_Loader When $name is not found
+	 * {@inheritdoc}
 	 */
 	public function isFresh($name, $time)
 	{

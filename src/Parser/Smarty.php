@@ -12,17 +12,24 @@ namespace Fuel\Display\Parser;
 
 use Smarty as SmartyParser;
 
+/**
+ * Allows Smarty templates to be parsed
+ *
+ * @package Fuel\Display
+ *
+ * @since 2.0
+ */
 class Smarty extends AbstractParser
 {
 	/**
-	 * @var  \Smarty  $smarty
+	 * @var SmartyParser
 	 */
 	protected $smarty;
 
 	/**
-	 * Constructor
+	 * @param SmartyParser $smarty
 	 *
-	 * @param  \Smarty  $smarty
+	 * @since 2.0
 	 */
 	public function __construct(SmartyParser $smarty = null)
 	{
@@ -30,47 +37,42 @@ class Smarty extends AbstractParser
 	}
 
 	/**
-	 * Retrieve the Smarty parser
+	 * Returns the Smarty
 	 *
-	 * @return  \Smarty
+	 * @return SmartyParser
 	 */
 	public function getSmarty()
 	{
-		if ( ! $this->smarty)
+		if ($this->smarty === null)
 		{
-			$this->smarty = $this->setupSmarty();
+			$this->setupSmarty();
 		}
 
 		return $this->smarty;
 	}
 
 	/**
-	 * Smarty boostrapping
+	 * Sets up Smarty
 	 *
-	 * @return  \Smarty
+	 * @return SmartyParser
 	 */
-	public function setupSmarty()
+	protected function setupSmarty()
 	{
-		$smarty = new SmartyParser();
+		$this->smarty = new SmartyParser;
 
 		if ($this->manager->cachePath)
 		{
-			$smarty->setCacheDir($this->manager->cachePath.'smarty/');
+			$this->smarty->setCacheDir($this->manager->cachePath.'smarty/');
 		}
-
-		return $smarty;
 	}
 
 	/**
-	 * Parse the view
-	 *
-	 * @param   string  $file  path to view file
-	 * @param   array   $data  view data
-	 * @return  string  parsed view
+	 * {@inheritdoc}
 	 */
 	public function parse($file, Array $data = null)
 	{
 		$smarty = $this->getSmarty();
+
 		$template = $smarty->createTemplate($file);
 		$template->assign($data ?: $this->getData());
 

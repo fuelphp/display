@@ -13,15 +13,14 @@ namespace Fuel\Display\Parser;
 use dflydev\markdown\MarkdownParser;
 
 /**
- * Allows for the parsing of Markdown
+ * Allows Markdown templates to be parsed
  *
- * @package Fuel\Display\Parser
+ * @package Fuel\Display
  *
  * @since 2.0
  */
 class Markdown extends AbstractParser
 {
-
 	/**
 	 * @var MarkdownParser
 	 */
@@ -34,20 +33,40 @@ class Markdown extends AbstractParser
 	 */
 	public function __construct(MarkdownParser $parser = null)
 	{
-		$this->markdown = $parser ?: new MarkdownParser;
+		$this->markdown = $parser;
 	}
 
 	/**
-	 * Parse the view
+	 * Returns the Markdown Parser
 	 *
-	 * @param string $file path to view file
-	 * @param array  $data view data
-	 *
-	 * @return string parsed view
+	 * @return MarkdownParser
 	 *
 	 * @since 2.0
 	 */
-	public function parse($file, Array $data = null)
+	public function getMarkdown()
+	{
+		if ($this->markdown === null)
+		{
+			$this->setupMarkdown();
+		}
+
+		return $this->markdown;
+	}
+
+	/**
+	 * Setups the Markdown Parser
+	 *
+	 * @since 2.0
+	 */
+	protected function setupMarkdown()
+	{
+		$this->markdown = new MarkdownParser;
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function parse($file, array $data = null)
 	{
 		$contents = $file;
 

@@ -12,16 +12,19 @@ namespace Fuel\Display\Parser;
 
 use Exception;
 
+/**
+ * Allows plain php templates to be parsed
+ *
+ * @package Fuel\Display
+ *
+ * @since 2.0
+ */
 class Php extends AbstractParser
 {
 	/**
-	 * Parse the view
-	 *
-	 * @param   string  $file  path to view file
-	 * @param   array   $data  view data
-	 * @return  string  parsed view
+	 * {@inheritdoc}
 	 */
-	public function parse($file, Array $data = null)
+	public function parse($file, array $data = null)
 	{
 		$obCleanRoom = function ($__file, $__data)
 		{

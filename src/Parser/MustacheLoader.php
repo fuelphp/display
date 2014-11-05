@@ -14,29 +14,19 @@ use Mustache_Loader;
 use Mustache_Exception_UnknownTemplateException;
 use Fuel\Display\ViewManager;
 
-class MustacheLoader implements Mustache_Loader
+/**
+ * Custom Mustache loader
+ *
+ * @package Fuel\Display
+ *
+ * @since 2.0
+ */
+class MustacheLoader extends AbstractLoader implements Mustache_Loader
 {
 	/**
-	 * @var  \Fuel\Display\ViewManager  $manager
-	 */
-	protected $manager;
-
-	/**
-	 * Constructor
+	 * {@inheritdoc}
 	 *
-	 * $param  \Fuel\Display\ViewManager  $manager
-	 */
-	public function __construct(ViewManager $manager)
-	{
-		$this->manager = $manager;
-	}
-
-	/**
-	 * Find a mustache file
-	 *
-	 * @param   string  $name  file name
-	 * @return  string  pathe to file
-	 * @throws  \Mustache_Exception_UnknownTemplateException  when the template isn't found
+	 * @throws Mustache_Exception_UnknownTemplateException If the template is not found
 	 */
 	public function findView($name)
 	{
@@ -45,12 +35,7 @@ class MustacheLoader implements Mustache_Loader
 			$name .= '.mustache';
 		}
 
-		if (file_exists($name))
-		{
-			return $name;
-		}
-
-		if ( ! $file = $this->manager->findView($name))
+		if ( ! $file = parent::findView($name))
 		{
 			throw new Mustache_Exception_UnknownTemplateException('Could not locate: '.$name);
 		}
@@ -59,11 +44,7 @@ class MustacheLoader implements Mustache_Loader
 	}
 
 	/**
-	 * Load a Template by name.
-	 *
-	 * @throws Mustache_Exception_UnknownTemplateException If a template file is not found.
-	 * @param string $name
-	 * @return string Mustache Template source
+	 * {@inheritdoc}
 	 */
 	public function load($name)
 	{

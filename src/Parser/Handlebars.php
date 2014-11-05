@@ -13,38 +13,35 @@ namespace Fuel\Display\Parser;
 use Handlebars\Handlebars as HandlebarsEngine;
 
 /**
- * Allows handlebars templates to be parsed
+ * Allows Handlebars templates to be parsed
  *
- * @package Fuel\Display\Parser
- * @since   2.0
+ * @package Fuel\Display
+ *
+ * @since 2.0
  */
 class Handlebars extends AbstractParser
 {
-
 	/**
 	 * @var HandlebarsEngine
 	 */
 	protected $engine;
 
-	public function __construct($engine = null)
+	/**
+	 * @param HandlebarsEngine $engine
+	 *
+	 * @since 2.0
+	 */
+	public function __construct(HandlebarsEngine $engine = null)
 	{
 		$this->engine = $engine;
 	}
 
-	protected function setupEngine()
-	{
-		$this->engine = new HandlebarsEngine();
-
-		$loader = new HandlebarsLoader($this->manager);
-
-		$partialLoader = new HandlebarsLoader($this->manager);
-		$partialLoader->setPrefix('_');
-
-		$this->engine->setLoader($loader);
-		$this->engine->setPartialsLoader($partialLoader);
-	}
-
-	protected function getEngine()
+	/**
+	 * Returns the engine
+	 *
+	 * @return HandlebarsEngine
+	 */
+	public function getEngine()
 	{
 		if ($this->engine === null)
 		{
@@ -55,14 +52,27 @@ class Handlebars extends AbstractParser
 	}
 
 	/**
-	 * Parse the view
+	 * Sets up HandlebarsEngine
 	 *
-	 * @param string $file path to view file
-	 * @param array  $data view data
-	 *
-	 * @return string parsed view
+	 * @since 2.0
 	 */
-	public function parse($file, Array $data = null)
+	protected function setupEngine()
+	{
+		$this->engine = new HandlebarsEngine;
+
+		$loader = new HandlebarsLoader($this->manager);
+
+		$partialLoader = new HandlebarsLoader($this->manager);
+		$partialLoader->setPrefix('_');
+
+		$this->engine->setLoader($loader);
+		$this->engine->setPartialsLoader($partialLoader);
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function parse($file, array $data = null)
 	{
 		return $this->getEngine()->render($file, $data ?: $this->getData());
 	}

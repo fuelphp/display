@@ -15,13 +15,12 @@ use dflydev\markdown\MarkdownExtraParser;
 /**
  * Allows the parsing of view files using MarkdownExtra
  *
- * @package Fuel\Display\Parser
+ * @package Fuel\Display
  *
  * @since 2.0
  */
 class MarkdownExtra extends Markdown
 {
-
 	/**
 	 * @param MarkdownExtraParser $parser
 	 *

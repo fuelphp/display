@@ -1,5 +1,12 @@
 <?php
-
+/**
+ * @package    Fuel\Display
+ * @version    2.0
+ * @author     Fuel Development Team
+ * @license    MIT License
+ * @copyright  2010 - 2014 Fuel Development Team
+ * @link       http://fuelphp.com
+ */
 
 namespace Fuel\Display\Parser;
 
@@ -7,9 +14,15 @@ use Fuel\Display\ViewManager;
 use Fuel\Display\ViewNotFoundException;
 use Handlebars\Loader;
 
-class HandlebarsLoader implements Loader
+/**
+ * Custom Handlebars loader
+ *
+ * @package Fuel\Display
+ *
+ * @since 2.0
+ */
+class HandlebarsLoader extends AbstractLoader implements Loader
 {
-
 	/**
 	 * Prefix to append to file names when loading files
 	 *
@@ -18,42 +31,8 @@ class HandlebarsLoader implements Loader
 	protected $prefix = '';
 
 	/**
-	 * @var ViewManager
-	 */
-	protected $manager;
-
-	public function __construct(ViewManager $viewManager)
-	{
-		$this->manager = $viewManager;
-	}
-
-	/**
-	 * Load a Template by name.
+	 * Returns the file name prefix
 	 *
-	 * @param string $name template name to load
-	 *
-	 * @return String
-	 */
-	public function load($name)
-	{
-		if (substr($name, -11) !== '.handlebars' && substr($name, -4) !== '.hbs')
-		{
-			$name = $this->prefix . $name . '.handlebars';
-		}
-
-		$file = $name;
-
-		if ( ! file_exists($name) && ! $file = $this->manager->findView($name))
-		{
-			throw new ViewNotFoundException($name);
-		}
-
-		$content  = file_get_contents($file);
-
-		return $content;
-	}
-
-	/**
 	 * @return string
 	 */
 	public function getPrefix()
@@ -62,6 +41,8 @@ class HandlebarsLoader implements Loader
 	}
 
 	/**
+	 * Sets the file name prefix
+	 *
 	 * @param string $prefix
 	 */
 	public function setPrefix($prefix)
@@ -69,4 +50,31 @@ class HandlebarsLoader implements Loader
 		$this->prefix = $prefix;
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
+	public function findView($name)
+	{
+		if (substr($name, -11) !== '.handlebars' && substr($name, -4) !== '.hbs')
+		{
+			$name = $this->prefix . $name . '.handlebars';
+		}
+
+		if ( ! $file = parent::findView($name))
+		{
+			throw new ViewNotFoundException('Could not locate: '.$name);
+		}
+
+		return $file
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function load($name)
+	{
+		$file = $this->findView($name);
+
+		return file_get_contents($file);
+	}
 }

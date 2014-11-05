@@ -10,17 +10,16 @@
 
 namespace Fuel\Display\Parser;
 
-use Fuel\Display\DataContainer;
 use Fuel\Display\ViewManager;
 
 /**
- * Manager logic for parsers
+ * Common logic for custom loaders
  *
  * @package Fuel\Display
  *
  * @since 2.0
  */
-abstract class AbstractParser extends DataContainer
+abstract class AbstractLoader
 {
 	/**
 	 * @var ViewManager
@@ -28,26 +27,29 @@ abstract class AbstractParser extends DataContainer
 	protected $manager;
 
 	/**
-	 * Sets the view manager
-	 *
 	 * @param ViewManager $manager
 	 *
-	 * @return $this
+	 * @since 2.0
 	 */
-	public function setManager(ViewManager $manager)
+	public function __construct(ViewManager $manager)
 	{
 		$this->manager = $manager;
-
-		return $this;
 	}
 
 	/**
-	 * Parses the view
+	 * Locates a view file
 	 *
-	 * @param string $file
-	 * @param array  $data
+	 * @param string $name
 	 *
-	 * @return string
+	 * @return string|null Path to file
 	 */
-	abstract public function parse($file, array $data = null);
+	public function findView($name)
+	{
+		if (file_exists($name))
+		{
+			return $name;
+		}
+
+		return $this->manager->findView($name);
+	}
 }

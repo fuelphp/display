@@ -13,15 +13,14 @@ namespace Fuel\Display\Parser;
 use Mustache_Engine;
 
 /**
- * Allows views to be rendered from Mustache templates.
+ * Allows Mustache templates to be parsed
  *
- * @package Fuel\Display\Parser
+ * @package Fuel\Display
  *
  * @since 2.0
  */
 class Mustache extends AbstractParser
 {
-
 	/**
 	 * @var Mustache_Engine $mustache
 	 */
@@ -38,27 +37,7 @@ class Mustache extends AbstractParser
 	}
 
 	/**
-	 * Bootstrap Mustache_Engine
-	 *
-	 * @return Mustache_Engine
-	 *
-	 * @since 2.0
-	 */
-	public function setupMustache()
-	{
-		$mustacheLoader = new MustacheLoader($this->manager);
-		$config = array('loader' => $mustacheLoader);
-
-		if ($this->manager->cachePath)
-		{
-			$config['cache'] = $this->manager->cachePath.'mustache/';
-		}
-
-		return new Mustache_Engine($config);
-	}
-
-	/**
-	 * Retrieve the Mustache_Engine
+	 * Returns the Mustache_Engine
 	 *
 	 * @return Mustache_Engine
 	 *
@@ -66,25 +45,36 @@ class Mustache extends AbstractParser
 	 */
 	public function getMustache()
 	{
-		if ( ! $this->mustache)
+		if ($this->mustache === null)
 		{
-			$this->mustache = $this->setupMustache();
+			$this->setupMustache();
 		}
 
 		return $this->mustache;
 	}
 
 	/**
-	 * Parse the view
-	 *
-	 * @param string $file Path to view file
-	 * @param array  $data View data
-	 *
-	 * @return string Parsed view
+	 * Sets up Mustache_Engine
 	 *
 	 * @since 2.0
 	 */
-	public function parse($file, Array $data = null)
+	public function setupMustache()
+	{
+		$mustacheLoader = new MustacheLoader($this->manager);
+		$config = ['loader' => $mustacheLoader];
+
+		if ($this->manager->cachePath)
+		{
+			$config['cache'] = $this->manager->cachePath.'mustache/';
+		}
+
+		$this->mustache = new Mustache_Engine($config);
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function parse($file, array $data = null)
 	{
 		$mustache = $this->getMustache();
 
