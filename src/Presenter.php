@@ -57,7 +57,7 @@ class Presenter extends DataContainer
 	 * @param ViewManager $manager
 	 * @param string      $method Method to call before rendering the Presenter view
 	 * @param boolean     $filter Whether or not to auto filter the view variables
-	 * @param string      $view
+	 * @param string|View $view
 	 *
 	 * @since 2.0
 	 */
@@ -133,6 +133,9 @@ class Presenter extends DataContainer
 
 		// transfer the presenter data to the view
 		$this->view->merge($this);
+
+		// set autofilter on view
+		$this->view->autoFilter($this->autoFilter);
 
 		// render the view
 		return $this->view->render($data);

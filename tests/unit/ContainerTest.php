@@ -119,7 +119,7 @@ class ContainerTest extends Test
 		$this->assertEquals(
 			[
 			'sanitize' => 'sanitized',
-			'foo' => 'bar',
+			'foo'      => 'bar',
 			],
 			$this->container->getData()
 		);

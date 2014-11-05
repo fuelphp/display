@@ -75,8 +75,8 @@ class ViewTest extends Test
 		$this->parserMock
 			->shouldReceive('parse')
 			->with('file', [])
-			->andReturn('')
-			->once();
+			->once()
+			->andReturn('');
 
 		$this->managerMock
 			->shouldReceive('getData')
