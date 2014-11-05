@@ -72,9 +72,9 @@ class Handlebars extends AbstractParser
 	/**
 	 * {@inheritdoc}
 	 */
-	public function parse($file, array $data = null)
+	public function parse($file, array $data = [])
 	{
-		return $this->getEngine()->render($file, $data ?: $this->getData());
+		return $this->getEngine()->render($file, $data);
 	}
 
 }

@@ -66,7 +66,7 @@ class Markdown extends AbstractParser
 	/**
 	 * {@inheritdoc}
 	 */
-	public function parse($file, array $data = null)
+	public function parse($file, array $data = [])
 	{
 		$contents = $file;
 

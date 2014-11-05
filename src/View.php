@@ -83,9 +83,7 @@ class View extends DataContainer
 			$this->set($data);
 		}
 
-		$this->parser->set($this);
-
-		return $this->parser->parse($this->file);
+		return $this->parser->parse($this->file, $this->getData());
 	}
 
 	/**

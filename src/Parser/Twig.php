@@ -74,11 +74,11 @@ class Twig extends AbstractParser
 	/**
 	 * {@inheritdoc}
 	 */
-	public function parse($file, array $data = null)
+	public function parse($file, array $data = [])
 	{
 		$twig = $this->getTwig();
 
-		return $twig->render($file, $data ?: $this->getData());
+		return $twig->render($file, $data);
 	}
 
 }

@@ -20,7 +20,7 @@ use Fuel\Display\ViewManager;
  *
  * @since 2.0
  */
-abstract class AbstractParser extends DataContainer
+abstract class AbstractParser
 {
 	/**
 	 * @var ViewManager
@@ -49,5 +49,5 @@ abstract class AbstractParser extends DataContainer
 	 *
 	 * @return string
 	 */
-	abstract public function parse($file, array $data = null);
+	abstract public function parse($file, array $data = []);
 }
