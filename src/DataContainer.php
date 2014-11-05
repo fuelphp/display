@@ -14,37 +14,48 @@ use Closure;
 use OutOfBoundsException;
 use ArrayAccess;
 
+/**
+ * Contains view data
+ *
+ * @package Fuel\Display
+ *
+ * @since 2.0
+ */
 abstract class DataContainer
 {
 	/**
-	 * @var  array  $data  view data
+	 * @var array
 	 */
-	protected $data = array();
+	protected $data = [];
 
 	/**
-	 * @var  array  @filterIndex  filter index
+	 * @var array
 	 */
-	protected $filterIndex = array();
+	protected $filterIndex = [];
 
 	/**
-	 * @var  boolean  $autoFilter  auth filter
+	 * @var boolean
 	 */
 	protected $autoFilter = false;
 
 	/**
-	 * @var  array  @whileList  whitelisted classes
+	 * Whitelisted classes
+	 *
+	 * @var array
 	 */
-	protected $whitelist = array(
+	protected $whitelist = [
 		'Fuel\Display\View',
 		'Fuel\Display\Presenter',
 		'Fuel\Display\Whitelisted',
 		'Closure',
-	);
+	];
 
 	/**
-	 * Retrieved all the viewdata
+	 * Retrieves all the view data
 	 *
-	 * @return  array  view data
+	 * @return array
+	 *
+	 * @since 2.0
 	 */
 	public function getData()
 	{
@@ -79,6 +90,15 @@ abstract class DataContainer
 		return $data;
 	}
 
+	/**
+	 * Filters the output
+	 *
+	 * @param mixed $value
+	 *
+	 * @return string
+	 *
+	 * @since 2.0
+	 */
 	public function filter($value)
 	{
 		if (is_array($value) or (is_object($value) and $value instanceof ArrayAccess))
@@ -90,24 +110,29 @@ abstract class DataContainer
 	}
 
 	/**
-	 * Remove all the view data
+	 * Removes all the view data
 	 *
-	 * @return  $this
+	 * @return $this
+	 *
+	 * @since 2.0
 	 */
 	public function clearData()
 	{
-		$this->data = array();
-		$this->filterIndex = array();
+		$this->data = [];
+		$this->filterIndex = [];
 
 		return $this;
 	}
 
 	/**
-	 * Overwrite all the viewdata
+	 * Overwrites all the view data
 	 *
-	 * @param   array    $data    view data
-	 * @param   boolean  $filter  filter boolean
-	 * @return  $this
+	 * @param array   $data
+	 * @param boolean $filter
+	 *
+	 * @return $this
+	 *
+	 * @since 2.0
 	 */
 	public function replaceData(array $data, $filter = null)
 	{
@@ -117,10 +142,13 @@ abstract class DataContainer
 	}
 
 	/**
-	 * Set the auto filter setting
+	 * Sets the auto filter setting
 	 *
-	 * @param   boolean  $filter  wether to filter the view data
-	 * @return  $this;
+	 * @param boolean $filter
+	 *
+	 * @return $this
+	 *
+	 * @since 2.0
 	 */
 	public function autoFilter($filter = true)
 	{
@@ -146,11 +174,15 @@ abstract class DataContainer
 	}
 
 	/**
-	 * Set view data
+	 * Sets view data
 	 *
-	 * @param   string|array  key or view data array
-	 * @param   mixed         $value   view data value
-	 * @param   boolean       $filter  wether to filter the view data
+	 * @param string|array  $key
+	 * @param mixed         $value
+	 * @param boolean       $filter
+	 *
+	 * @return $this
+	 *
+	 * @since 2.0
 	 */
 	public function set($key, $value = null, $filter = null)
 	{
@@ -192,10 +224,13 @@ abstract class DataContainer
 	 *     // This reference can be accessed as $ref within the object
 	 *     $obj->bind('ref', $bar);
 	 *
-	 * @param   string   variable name
-	 * @param   mixed    referenced variable
-	 * @param   bool     Whether to filter the var on output
+	 * @param string  $key    Variable name
+	 * @param mixed   $value  Referenced variable
+	 * @param boolean $filter Whether to filter the var on output
+	 *
 	 * @return  $this
+	 *
+	 * @since 2.0
 	 */
 	public function bind($key, &$value, $filter = null)
 	{
@@ -206,11 +241,14 @@ abstract class DataContainer
 	}
 
 	/**
-	 * Set safe view data, will not be filtered
+	 * Sets safe view data, will not be filtered
 	 *
-	 * @param   string|array  $key    key or view data array
-	 * @param   mixed         $value  view data value
-	 * @return  $this
+	 * @param string|array $key
+	 * @param mixed        $value
+	 *
+	 * @return $this
+	 *
+	 * @since 2.0
 	 */
 	public function setSafe($key, $value = null)
 	{
@@ -218,11 +256,14 @@ abstract class DataContainer
 	}
 
 	/**
-	 * Get data from the container
+	 * Returns data from the container
 	 *
-	 * @param   string  $key      view data key
-	 * @param   mixed   $default  default value
-	 * @return  mixed   view data value
+	 * @param string $key
+	 * @param mixed  $default
+	 *
+	 * @return mixed
+	 *
+	 * @since 2.0
 	 */
 	public function get($key, $default = null)
 	{
@@ -237,8 +278,8 @@ abstract class DataContainer
 	/**
 	 * Magic setter
 	 *
-	 * @param   string  $key      view data key
-	 * @param   mixed   $default  default value
+	 * @param string $key
+	 * @param mixed  $default
 	 */
 	public function __set($key, $value)
 	{
@@ -246,12 +287,14 @@ abstract class DataContainer
 	}
 
 	/**
-	 * Magic setter
+	 * Magic getter
 	 *
-	 * @param   string  $key      view data key
-	 * @param   mixed   $default  default value
-	 * @return  mixed   view data value
-	 * @throws  OutOfBoundsException  when the property is undefined
+	 * @param string $key
+	 * @param mixed  $default
+	 *
+	 * @return mixed
+	 *
+	 * @throws OutOfBoundsException  If the property is undefined
 	 */
 	public function __get($key)
 	{

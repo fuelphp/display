@@ -14,27 +14,28 @@ namespace Fuel\Display;
  * Allows view logic to be encapsulated
  *
  * @package Fuel\Display
- * @since   2.0
+ *
+ * @since 2.0
  */
 class Presenter extends DataContainer
 {
 	/**
-	 * @var View $view
+	 * @var View
 	 */
 	protected $view;
 
 	/**
-	 * @var ViewManager $manager
+	 * @var ViewManager
 	 */
 	protected $manager;
 
 	/**
-	 * @var boolean $autoFilter
+	 * @var boolean
 	 */
 	protected $autoFilter = false;
 
 	/**
-	 * @var string $method method to execute when rendering
+	 * @var string method to execute when rendering
 	 */
 	protected $method;
 
@@ -64,6 +65,7 @@ class Presenter extends DataContainer
 		$this->manager = $manager;
 		$this->method = $method === null ? 'view' : $method;
 		$this->autoFilter = $autoFilter;
+
 		if ($view !== null)
 		{
 			$this->setView($view);
@@ -71,9 +73,11 @@ class Presenter extends DataContainer
 	}
 
 	/**
-	 * Retrieve all presenter data from the presenter and the global manager
+	 * Retrieves all presenter data from the presenter and the global manager
 	 *
-	 * @return array view data
+	 * @return array
+	 *
+	 * @since 2.0
 	 */
 	public function getData()
 	{
@@ -84,18 +88,20 @@ class Presenter extends DataContainer
 	}
 
 	/**
-	 * Set a new View (object)
+	 * Sets a new View (object)
 	 *
-	 * @param string|View $view new view to be used by this presenter
+	 * @param string|View $view
 	 *
-	 * @return Presenter
+	 * @return $this
+	 *
+	 * @since 2.0
 	 */
 	public function setView($view)
 	{
 		$this->view = $view;
 
 		// construct the view if needed
-		if ( ! $this->view instanceOf \Fuel\Display\View)
+		if ( ! $this->view instanceof \Fuel\Display\View)
 		{
 			$this->view = $this->manager->forge($this->view);
 		}
@@ -104,15 +110,15 @@ class Presenter extends DataContainer
 	}
 
 	/**
-	 * Render the view
+	 * Renders the view
 	 *
-	 * @param  array $data additional view data
+	 * @param array $data additional view data
 	 *
-	 * @return string rendered view
+	 * @return string
 	 *
 	 * @since 2.0
 	 */
-	public function render(Array $data = array())
+	public function render(array $data = [])
 	{
 		// run the methods
 		$this->before();
@@ -132,9 +138,9 @@ class Presenter extends DataContainer
 	}
 
 	/**
-	 * Render the presenter view
+	 * Renders the presenter view
 	 *
-	 * @return string rendered view
+	 * @return string
 	 *
 	 * @since 2.0
 	 */

@@ -14,16 +14,16 @@ use Fuel\FileSystem\Finder;
 use Fuel\Dependency\ServiceProvider;
 
 /**
- * FuelPHP ServiceProvider class for this package
+ * FuelPHP ServiceProvider class for Display
  *
  * @package Fuel\Display
  *
- * @since 2.0.0
+ * @since 2.0
  */
 class FuelServiceProvider extends ServiceProvider
 {
 	/**
-	 * @var array list of service names provided by this provider
+	 * @var array
 	 */
 	public $provides = [
 		'viewmanager',

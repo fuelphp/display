@@ -15,10 +15,11 @@ use Fuel\FileSystem\Finder;
 use Fuel\Display\Parser\AbstractParser;
 
 /**
- * Responsible for loading and parsing views.
+ * Responsible for loading and parsing views
  *
  * @package Fuel\Display
- * @since   2.0
+ *
+ * @since 2.0
  */
 class ViewManager extends DataContainer
 {
@@ -28,36 +29,38 @@ class ViewManager extends DataContainer
 	protected $finder;
 
 	/**
-	 * @var AbstractParser[] Available view parsers
+	 * Available view parsers
+	 *
+	 * @var AbstractParser[]
 	 */
-	protected $parsers = array();
+	protected $parsers = [];
 
 	/**
-	 * @var string View folder name prefix
+	 * View folder name prefix
+	 *
+	 * @var string
 	 */
 	public $viewFolder = 'views';
 
 	/**
-	 * @var string $cachePath Cache path
+	 * @var string
 	 */
 	public $cachePath;
 
 	/**
-	 * Constructor
-	 *
-	 * @param  Finder $finder
-	 * @param  array  $config
+	 * @param Finder $finder
+	 * @param array  $config
 	 *
 	 * @since 2.0
 	 */
-	public function __construct(Finder $finder, array $config = array())
+	public function __construct(Finder $finder, array $config = [])
 	{
 		$this->setFinder($finder);
 		$this->configure($config);
 	}
 
 	/**
-	 * Configure the view manager
+	 * Configures the view manager
 	 *
 	 * @param array $config
 	 *
@@ -92,9 +95,10 @@ class ViewManager extends DataContainer
 	}
 
 	/**
-	 * Set the view folder
+	 * Sets the view folder
 	 *
-	 * @param  string $folder Folder path
+	 * @param string $folder
+	 *
 	 * @return $this
 	 *
 	 * @since 2.0
@@ -128,7 +132,7 @@ class ViewManager extends DataContainer
 	}
 
 	/**
-	 * Registers a new parser for rendering a given file type.
+	 * Registers a new parser for rendering a given file type
 	 *
 	 * @param string         $extension
 	 * @param AbstractParser $parser
@@ -146,7 +150,7 @@ class ViewManager extends DataContainer
 	}
 
 	/**
-	 * Registers multiple parsers at once.
+	 * Registers multiple parsers at once
 	 *
 	 * @param array $parsers Key as the file extension and value as the parser instance.
 	 *
@@ -165,7 +169,7 @@ class ViewManager extends DataContainer
 	}
 
 	/**
-	 * Returns the parsers.
+	 * Returns the parsers
 	 *
 	 * @return AbstractParser[]
 	 *
@@ -177,7 +181,7 @@ class ViewManager extends DataContainer
 	}
 
 	/**
-	 * Returns a parser by extension.
+	 * Returns a parser by extension
 	 *
 	 * @return AbstractParser|null
 	 *
@@ -192,6 +196,8 @@ class ViewManager extends DataContainer
 	}
 
 	/**
+	 * Returns the Finder instance
+	 *
 	 * @return Finder
 	 *
 	 * @since 2.0
@@ -202,7 +208,7 @@ class ViewManager extends DataContainer
 	}
 
 	/**
-	 * Sets the Finder instance that will be used to load views.
+	 * Sets the Finder instance that will be used to load views
 	 *
 	 * @param Finder $finder
 	 *
@@ -218,7 +224,7 @@ class ViewManager extends DataContainer
 	}
 
 	/**
-	 * Attempts to get the file name for the given view.
+	 * Attempts to get the file name for the given view
 	 *
 	 * @param $view
 	 *
@@ -234,7 +240,7 @@ class ViewManager extends DataContainer
 	}
 
 	/**
-	 * Attempts to find and load the given view.
+	 * Attempts to find and load the given view
 	 *
 	 * @param string    $view
 	 * @param array     $data
@@ -276,5 +282,4 @@ class ViewManager extends DataContainer
 
 		return $view;
 	}
-
 }

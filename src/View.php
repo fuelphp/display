@@ -12,21 +12,27 @@ namespace Fuel\Display;
 
 use Fuel\Display\Parser\AbstractParser;
 
+/**
+ * Responsible for rendering a view
+ *
+ * @package Fuel\Display
+ *
+ * @since 2.0
+ */
 class View extends DataContainer
 {
-
 	/**
-	 * @var  string  $file
+	 * @var string
 	 */
 	protected $file;
 
 	/**
-	 * @var AbstractParser $parser
+	 * @var AbstractParser
 	 */
 	protected $parser;
 
 	/**
-	 * @var ViewManager $manager
+	 * @var ViewManager
 	 */
 	protected $manager;
 
@@ -34,7 +40,7 @@ class View extends DataContainer
 	 * @param ViewManager    $manager
 	 * @param AbstractParser $parser
 	 * @param string         $file
-	 * @param bool           $filter
+	 * @param boolean        $filter
 	 *
 	 * @since 2.0
 	 */
@@ -47,9 +53,9 @@ class View extends DataContainer
 	}
 
 	/**
-	 * Retrieve all view data from the view and the manager
+	 * Retrieves all view data from the view and the manager
 	 *
-	 * @return array View data
+	 * @return array
 	 *
 	 * @since 2.0
 	 */
@@ -62,17 +68,17 @@ class View extends DataContainer
 	}
 
 	/**
-	 * Render the view.
+	 * Renders the view
 	 *
 	 * @param array $data additional view data
 	 *
-	 * @return string Rendered view
+	 * @return string
 	 *
 	 * @since 2.0
 	 */
-	public function render(array $data = array())
+	public function render(array $data = [])
 	{
-		if ($data !== null)
+		if ( ! empty($data))
 		{
 			$this->set($data);
 		}
@@ -83,9 +89,9 @@ class View extends DataContainer
 	}
 
 	/**
-	 * Render the view
+	 * Renders the view
 	 *
-	 * @return string rendered view
+	 * @return string
 	 *
 	 * @since 2.0
 	 */
