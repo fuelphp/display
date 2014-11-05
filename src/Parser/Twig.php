@@ -68,7 +68,7 @@ class Twig extends AbstractParser
 			$config['cache'] = $this->manager->cachePath.'twig/';
 		}
 
-		$this->twig new Twig_Environment($twigLoader, $config);
+		$this->twig = new Twig_Environment($twigLoader, $config);
 	}
 
 	/**
