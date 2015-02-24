@@ -11,11 +11,10 @@
 namespace Fuel\Display\Providers;
 
 use Fuel\FileSystem\Finder;
-use Fuel\Dependency\ServiceProvider;
-use Fuel\Display\ViewManagerAware;
+use League\Container\ServiceProvider;
 
 /**
- * FuelPHP ServiceProvider class for Display
+ * Fuel ServiceProvider class for Display
  *
  * @package Fuel\Display
  *
@@ -38,95 +37,31 @@ class FuelServiceProvider extends ServiceProvider
 	];
 
 	/**
-	 * Service provider definitions
+	 * {@inheritdoc}
 	 */
-	public function provide()
+	public function register()
 	{
-		/**
-		 * Define the generic extensions provided by this service provider
-		 */
-		$this->extension('getViewManagerInstance', function($container, $instance)
+		$this->container->add('getViewManagerInstance', function()
 		{
-			try
-			{
-				$stack = $container->resolve('requeststack');
-				if ($request = $stack->top())
-				{
-					$app = $request->getComponent()->getApplication();
-				}
-				else
-				{
-					$app = $container->resolve('application::__main');
-				}
+			$app = $this->container->get('getApplicationInstance');
 
-				if ($instance instanceof ViewManagerAware)
-				{
-					$instance->setViewManager($app->getViewManager());
-				}
-				else
-				{
-					$instance->viewmanager = $app->getViewManager();
-				}
-			}
-			catch (\Fuel\Dependency\ResolveException $e)
-			{
-				// ignore
-			}
+			return $app->getViewManager();
 		});
 
-		// \Fuel\Display\ViewManager
-		$this->register('viewmanager', function ($dic, Finder $finder, array $config = [])
+		$this->container->inflector('Fuel\Display\ViewManagerAware')
+			->invokeMethod('setViewManager', ['getViewManagerInstance']);
+
+		$this->container->add('viewmanager', function (Finder $finder, array $config = [])
 		{
-			return $dic->resolve('Fuel\Display\ViewManager', [$finder, $config]);
+			return $this->container->get('Fuel\Display\ViewManager', [$finder, $config]);
 		});
 
-		// \Fuel\Display\Parser\Php
-		$this->register('parser.php', function ($dic)
-		{
-			return $dic->resolve('Fuel\Display\Parser\Php');
-		});
-		$this->extend('parser.php', 'getViewManagerInstance');
-
-		// \Fuel\Display\Parser\Markdown
-		$this->register('parser.markdown', function ($dic)
-		{
-			return $dic->resolve('Fuel\Display\Parser\Markdown');
-		});
-		$this->extend('parser.markdown', 'getViewManagerInstance');
-
-		// \Fuel\Display\Parser\Mustache
-		$this->register('parser.mustache', function ($dic)
-		{
-			return $dic->resolve('Fuel\Display\Parser\Mustache');
-		});
-		$this->extend('parser.mustache', 'getViewManagerInstance');
-
-		// \Fuel\Display\Parser\Twig
-		$this->register('parser.twig', function ($dic)
-		{
-			return $dic->resolve('Fuel\Display\Parser\Twig');
-		});
-		$this->extend('parser.twig', 'getViewManagerInstance');
-
-		// \Fuel\Display\Parser\Smarty
-		$this->register('parser.smarty', function ($dic)
-		{
-			return $dic->resolve('Fuel\Display\Parser\Smarty');
-		});
-		$this->extend('parser.smarty', 'getViewManagerInstance');
-
-		// \Fuel\Display\Parser\Handlebars
-		$this->register('parser.handlebars', function ($dic)
-		{
-			return $dic->resolve('Fuel\Display\Parser\Handlebars');
-		});
-		$this->extend('parser.handlebars', 'getViewManagerInstance');
-
-		// \Fuel\Display\Parser\Handlebars - alternate .hbs
-		$this->register('parser.hbs', function ($dic)
-		{
-			return $dic->resolve('Fuel\Display\Parser\Handlebars');
-		});
-		$this->extend('parser.hbs', 'getViewManagerInstance');
+		$this->container->add('parser.php', 'Fuel\Display\Parser\Php');
+		$this->container->add('parser.markdown', 'Fuel\Display\Parser\Markdown');
+		$this->container->add('parser.mustache', 'Fuel\Display\Parser\Mustache');
+		$this->container->add('parser.twig', 'Fuel\Display\Parser\Twig');
+		$this->container->add('parser.smarty', 'Fuel\Display\Parser\Smarty');
+		$this->container->add('parser.handlebars', 'Fuel\Display\Parser\Handlebars');
+		$this->container->add('parser.hbs', 'Fuel\Display\Parser\Handlebars');
 	}
 }
