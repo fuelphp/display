@@ -27,7 +27,7 @@ class Presenter extends DataContainer
 	/**
 	 * @var ViewManager
 	 */
-	protected $manager;
+	protected $viewManager;
 
 	/**
 	 * @var boolean
@@ -54,16 +54,16 @@ class Presenter extends DataContainer
 	public function after() {}
 
 	/**
-	 * @param ViewManager $manager
+	 * @param ViewManager $viewManager
 	 * @param string      $method Method to call before rendering the Presenter view
 	 * @param boolean     $filter Whether or not to auto filter the view variables
 	 * @param string|View $view
 	 *
 	 * @since 2.0
 	 */
-	public function __construct(ViewManager $manager, $method, $autoFilter, $view)
+	public function __construct(ViewManager $viewManager, $method, $autoFilter, $view)
 	{
-		$this->manager = $manager;
+		$this->viewManager = $viewManager;
 		$this->method = $method === null ? 'view' : $method;
 		$this->autoFilter = $autoFilter;
 
@@ -83,7 +83,7 @@ class Presenter extends DataContainer
 	public function getData()
 	{
 		$data = parent::getData();
-		$global = $this->manager->getData();
+		$global = $this->viewManager->getData();
 
 		return array_merge($global, $data);
 	}
@@ -92,8 +92,6 @@ class Presenter extends DataContainer
 	 * Sets a new View (object)
 	 *
 	 * @param string|View $view
-	 *
-	 * @return $this
 	 *
 	 * @since 2.0
 	 */
@@ -104,10 +102,8 @@ class Presenter extends DataContainer
 		// construct the view if needed
 		if ( ! $this->view instanceof View)
 		{
-			$this->view = $this->manager->forge($this->view);
+			$this->view = $this->viewManager->forge($this->view);
 		}
-
-		return $this;
 	}
 
 	/**

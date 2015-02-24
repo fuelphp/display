@@ -13,6 +13,10 @@ namespace Fuel\Display;
 /**
  * Implement this interface to whitelist your
  * class for view data filtering
+ *
+ * @package Fuel\Display
+ *
+ * @since 2.0
  */
 interface Whitelisted
 {

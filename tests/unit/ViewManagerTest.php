@@ -68,7 +68,7 @@ class ViewManagerTest extends Test
 		$parser = \Mockery::mock('Fuel\Display\Parser\AbstractParser');
 
 		$parser
-			->shouldReceive('setManager')
+			->shouldReceive('setViewManager')
 			->with($this->viewManager)
 			->once();
 
@@ -88,7 +88,7 @@ class ViewManagerTest extends Test
 		$parser = \Mockery::mock('Fuel\Display\Parser\AbstractParser');
 
 		$parser
-			->shouldReceive('setManager')
+			->shouldReceive('setViewManager')
 			->with($this->viewManager)
 			->once();
 
@@ -139,7 +139,7 @@ class ViewManagerTest extends Test
 		$parser = \Mockery::mock('Fuel\Display\Parser\AbstractParser');
 
 		$parser
-			->shouldReceive('setManager')
+			->shouldReceive('setViewManager')
 			->with($this->viewManager)
 			->once();
 

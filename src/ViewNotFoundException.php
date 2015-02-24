@@ -10,9 +10,14 @@
 
 namespace Fuel\Display;
 
-use Exception;
-
-class ViewNotFoundException extends Exception
+/**
+ * Thrown when a View is not found
+ *
+ * @package Fuel\Display
+ *
+ * @since 2.0
+ */
+class ViewNotFoundException extends \Exception
 {
 
 }

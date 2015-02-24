@@ -34,26 +34,26 @@ class View extends DataContainer
 	/**
 	 * @var ViewManager
 	 */
-	protected $manager;
+	protected $viewManager;
 
 	/**
-	 * @param ViewManager    $manager
+	 * @param ViewManager    $viewManager
 	 * @param AbstractParser $parser
 	 * @param string         $file
-	 * @param boolean        $filter
+	 * @param boolean        $autoFilter
 	 *
 	 * @since 2.0
 	 */
-	public function __construct(ViewManager $manager, AbstractParser $parser, $file, $filter)
+	public function __construct(ViewManager $viewManager, AbstractParser $parser, $file, $autoFilter)
 	{
 		$this->file = $file;
 		$this->parser = $parser;
-		$this->manager = $manager;
-		$this->autoFilter = $filter;
+		$this->viewManager = $viewManager;
+		$this->autoFilter = $autoFilter;
 	}
 
 	/**
-	 * Retrieves all view data from the view and the manager
+	 * Retrieves all view data from the view and the viewManager
 	 *
 	 * @return array
 	 *
@@ -62,7 +62,7 @@ class View extends DataContainer
 	public function getData()
 	{
 		$data = parent::getData();
-		$global = $this->manager->getData();
+		$global = $this->viewManager->getData();
 
 		return array_merge($global, $data);
 	}

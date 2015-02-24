@@ -99,23 +99,17 @@ class ViewManager extends DataContainer
 	 *
 	 * @param string $folder
 	 *
-	 * @return $this
-	 *
 	 * @since 2.0
 	 */
 	public function setViewFolder($folder)
 	{
 		$this->viewFolder = rtrim($folder, '/ ');
-
-		return $this;
 	}
 
 	/**
 	 * Adds the given classes to the whitelist.
 	 *
 	 * @param string[] $classes
-	 *
-	 * @return $this
 	 *
 	 * @since 2.0
 	 */
@@ -127,8 +121,6 @@ class ViewManager extends DataContainer
 		}
 
 		$this->whitelist = array_merge($this->whitelist, $classes);
-
-		return $this;
 	}
 
 	/**
@@ -137,24 +129,18 @@ class ViewManager extends DataContainer
 	 * @param string         $extension
 	 * @param AbstractParser $parser
 	 *
-	 * @return $this
-	 *
 	 * @since 2.0
 	 */
 	public function registerParser($extension, AbstractParser $parser)
 	{
-		$parser->setManager($this);
+		$parser->setViewManager($this);
 		$this->parsers[$extension] = $parser;
-
-		return $this;
 	}
 
 	/**
 	 * Registers multiple parsers at once
 	 *
 	 * @param array $parsers Key as the file extension and value as the parser instance.
-	 *
-	 * @return $this
 	 *
 	 * @since 2.0
 	 */
@@ -164,8 +150,6 @@ class ViewManager extends DataContainer
 		{
 			$this->registerParser($extension, $parser);
 		}
-
-		return $this;
 	}
 
 	/**
@@ -212,15 +196,11 @@ class ViewManager extends DataContainer
 	 *
 	 * @param Finder $finder
 	 *
-	 * @return $this
-	 *
 	 * @since 2.0
 	 */
 	public function setFinder(Finder $finder)
 	{
 		$this->finder = $finder;
-
-		return $this;
 	}
 
 	/**

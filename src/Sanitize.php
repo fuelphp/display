@@ -12,6 +12,10 @@ namespace Fuel\Display;
 
 /**
  * Can be implemented by classes that provide internal data sanitation logic
+ *
+ * @package Fuel\Display
+ *
+ * @since 1.7
  */
 interface Sanitize
 {
