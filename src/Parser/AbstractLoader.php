@@ -24,16 +24,14 @@ abstract class AbstractLoader
 	/**
 	 * @var ViewManager
 	 */
-	protected $manager;
+	protected $viewManager;
 
 	/**
-	 * @param ViewManager $manager
-	 *
-	 * @since 2.0
+	 * @param ViewManager $viewManager
 	 */
-	public function __construct(ViewManager $manager)
+	public function __construct(ViewManager $viewManager)
 	{
-		$this->manager = $manager;
+		$this->viewManager = $viewManager;
 	}
 
 	/**
@@ -50,6 +48,6 @@ abstract class AbstractLoader
 			return $name;
 		}
 
-		return $this->manager->findView($name);
+		return $this->viewManager->findView($name);
 	}
 }

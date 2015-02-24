@@ -12,6 +12,7 @@ namespace Fuel\Display\Providers;
 
 use Fuel\FileSystem\Finder;
 use Fuel\Dependency\ServiceProvider;
+use Fuel\Display\ViewManagerAware;
 
 /**
  * FuelPHP ServiceProvider class for Display
@@ -58,13 +59,9 @@ class FuelServiceProvider extends ServiceProvider
 					$app = $container->resolve('application::__main');
 				}
 
-				if (is_callable(array($instance, 'setViewManager')))
+				if ($instance instanceof ViewManagerAware)
 				{
 					$instance->setViewManager($app->getViewManager());
-				}
-				elseif (is_callable(array($instance, 'setManager')))
-				{
-					$instance->setManager($app->getViewManager());
 				}
 				else
 				{

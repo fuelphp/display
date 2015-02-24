@@ -10,8 +10,8 @@
 
 namespace Fuel\Display\Parser;
 
-use Fuel\Display\DataContainer;
-use Fuel\Display\ViewManager;
+use Fuel\Display\ViewManagerAware;
+use Fuel\Display\ViewManagerAcceptor;
 
 /**
  * Manager logic for parsers
@@ -20,26 +20,9 @@ use Fuel\Display\ViewManager;
  *
  * @since 2.0
  */
-abstract class AbstractParser
+abstract class AbstractParser implements ViewManagerAware
 {
-	/**
-	 * @var ViewManager
-	 */
-	protected $manager;
-
-	/**
-	 * Sets the view manager
-	 *
-	 * @param ViewManager $manager
-	 *
-	 * @return $this
-	 */
-	public function setManager(ViewManager $manager)
-	{
-		$this->manager = $manager;
-
-		return $this;
-	}
+	use ViewManagerAcceptor;
 
 	/**
 	 * Parses the view
