@@ -11,8 +11,6 @@
 namespace Fuel\Display;
 
 use Fuel\Common\DataContainer as Container;
-use ArrayAccess;
-use RuntimeException;
 
 /**
  * Contains view data
@@ -41,8 +39,6 @@ abstract class DataContainer extends Container
 	protected $autoFilter = false;
 
 	/**
-	 * Whitelisted classes
-	 *
 	 * @var array
 	 */
 	protected $whitelist = [
@@ -57,15 +53,11 @@ abstract class DataContainer extends Container
 	 *
 	 * @param boolean $filter
 	 *
-	 * @return $this
-	 *
 	 * @since 2.0
 	 */
 	public function autoFilter($filter = true)
 	{
 		$this->autoFilter = $filter;
-
-		return $this;
 	}
 
 	/**
@@ -111,7 +103,7 @@ abstract class DataContainer extends Container
 	 *
 	 * @return boolean
 	 */
-	private function shouldBeFiltered($key)
+	protected function shouldBeFiltered($key)
 	{
 		if (isset($this->filterIndex[$key]))
 		{
@@ -128,7 +120,7 @@ abstract class DataContainer extends Container
 	 *
 	 * @return boolean
 	 */
-	private function isWhitelisted($object)
+	protected function isWhitelisted($object)
 	{
 		foreach ($this->whitelist as $whitelisted)
 		{
@@ -152,7 +144,7 @@ abstract class DataContainer extends Container
 	 */
 	public function filter($value)
 	{
-		if (is_array($value) or (is_object($value) and $value instanceof ArrayAccess))
+		if (is_array($value) or (is_object($value) and $value instanceof \ArrayAccess))
 		{
 			return array_map([$this, 'filter'], $value);
 		}
@@ -272,7 +264,7 @@ abstract class DataContainer extends Container
 	{
 		if ($this->readOnly)
 		{
-			throw new RuntimeException('Changing values on this Data Container is not allowed.');
+			throw new \RuntimeException('Changing values on this Data Container is not allowed.');
 		}
 
 		$this->data[$key] =& $value;
