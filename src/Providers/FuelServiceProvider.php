@@ -25,7 +25,7 @@ class FuelServiceProvider extends ServiceProvider
 	/**
 	 * @var array
 	 */
-	public $provides = [
+	protected $provides = [
 		'viewmanager',
 		'parser.php',
 		'parser.markdown',
