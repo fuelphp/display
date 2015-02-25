@@ -4,7 +4,7 @@
  * @version    2.0
  * @author     Fuel Development Team
  * @license    MIT License
- * @copyright  2010 - 2014 Fuel Development Team
+ * @copyright  2010 - 2015 Fuel Development Team
  * @link       http://fuelphp.com
  */
 
@@ -14,10 +14,6 @@ use Handlebars\Handlebars as HandlebarsEngine;
 
 /**
  * Allows Handlebars templates to be parsed
- *
- * @package Fuel\Display
- *
- * @since 2.0
  */
 class Handlebars extends AbstractParser
 {
@@ -28,8 +24,6 @@ class Handlebars extends AbstractParser
 
 	/**
 	 * @param HandlebarsEngine $engine
-	 *
-	 * @since 2.0
 	 */
 	public function __construct(HandlebarsEngine $engine = null)
 	{
@@ -52,9 +46,7 @@ class Handlebars extends AbstractParser
 	}
 
 	/**
-	 * Sets up HandlebarsEngine
-	 *
-	 * @since 2.0
+	 * Sets HandlebarsEngine up
 	 */
 	protected function setupEngine()
 	{

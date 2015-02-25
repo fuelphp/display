@@ -4,7 +4,7 @@
  * @version    2.0
  * @author     Fuel Development Team
  * @license    MIT License
- * @copyright  2010 - 2014 Fuel Development Team
+ * @copyright  2010 - 2015 Fuel Development Team
  * @link       http://fuelphp.com
  */
 
@@ -16,10 +16,6 @@ use Fuel\Display\ViewManager;
 
 /**
  * Custom Mustache loader
- *
- * @package Fuel\Display
- *
- * @since 2.0
  */
 class MustacheLoader extends AbstractLoader implements Mustache_Loader
 {

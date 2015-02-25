@@ -4,7 +4,7 @@
  * @version    2.0
  * @author     Fuel Development Team
  * @license    MIT License
- * @copyright  2010 - 2014 Fuel Development Team
+ * @copyright  2010 - 2015 Fuel Development Team
  * @link       http://fuelphp.com
  */
 
@@ -14,10 +14,6 @@ use Fuel\Display\Parser\AbstractParser;
 
 /**
  * Responsible for rendering a view
- *
- * @package Fuel\Display
- *
- * @since 2.0
  */
 class View extends DataContainer
 {
@@ -41,8 +37,6 @@ class View extends DataContainer
 	 * @param AbstractParser $parser
 	 * @param string         $file
 	 * @param boolean        $autoFilter
-	 *
-	 * @since 2.0
 	 */
 	public function __construct(ViewManager $viewManager, AbstractParser $parser, $file, $autoFilter)
 	{
@@ -56,8 +50,6 @@ class View extends DataContainer
 	 * Retrieves all view data from the view and the viewManager
 	 *
 	 * @return array
-	 *
-	 * @since 2.0
 	 */
 	public function getData()
 	{
@@ -73,8 +65,6 @@ class View extends DataContainer
 	 * @param array $data additional view data
 	 *
 	 * @return string
-	 *
-	 * @since 2.0
 	 */
 	public function render(array $data = [])
 	{
@@ -90,8 +80,6 @@ class View extends DataContainer
 	 * Renders the view
 	 *
 	 * @return string
-	 *
-	 * @since 2.0
 	 */
 	public function __toString()
 	{

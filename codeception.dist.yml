@@ -1,3 +1,4 @@
+actor: Tester
 paths:
   tests: tests
   log: tests/_output
@@ -5,10 +6,8 @@ paths:
   helpers: tests/_support
 settings:
   bootstrap: _bootstrap.php
-  suite_class: \PHPUnit_Framework_TestSuite
-  colors: true
+  colors: false
   memory_limit: 1024M
-  log: true
 coverage:
   enabled: true
   include:

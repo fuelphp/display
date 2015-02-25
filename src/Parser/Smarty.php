@@ -4,7 +4,7 @@
  * @version    2.0
  * @author     Fuel Development Team
  * @license    MIT License
- * @copyright  2010 - 2014 Fuel Development Team
+ * @copyright  2010 - 2015 Fuel Development Team
  * @link       http://fuelphp.com
  */
 
@@ -14,10 +14,6 @@ use Smarty as SmartyParser;
 
 /**
  * Allows Smarty templates to be parsed
- *
- * @package Fuel\Display
- *
- * @since 2.0
  */
 class Smarty extends AbstractParser
 {
@@ -28,8 +24,6 @@ class Smarty extends AbstractParser
 
 	/**
 	 * @param SmartyParser $smarty
-	 *
-	 * @since 2.0
 	 */
 	public function __construct(SmartyParser $smarty = null)
 	{
@@ -52,9 +46,7 @@ class Smarty extends AbstractParser
 	}
 
 	/**
-	 * Sets up Smarty
-	 *
-	 * @return SmartyParser
+	 * Sets Smarty up
 	 */
 	protected function setupSmarty()
 	{

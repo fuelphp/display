@@ -4,22 +4,17 @@
  * @version    2.0
  * @author     Fuel Development Team
  * @license    MIT License
- * @copyright  2010 - 2014 Fuel Development Team
+ * @copyright  2010 - 2015 Fuel Development Team
  * @link       http://fuelphp.com
  */
 
 namespace Fuel\Display;
 
-use DomainException;
 use Fuel\FileSystem\Finder;
 use Fuel\Display\Parser\AbstractParser;
 
 /**
  * Responsible for loading and parsing views
- *
- * @package Fuel\Display
- *
- * @since 2.0
  */
 class ViewManager extends DataContainer
 {
@@ -50,8 +45,6 @@ class ViewManager extends DataContainer
 	/**
 	 * @param Finder $finder
 	 * @param array  $config
-	 *
-	 * @since 2.0
 	 */
 	public function __construct(Finder $finder, array $config = [])
 	{
@@ -63,8 +56,6 @@ class ViewManager extends DataContainer
 	 * Configures the view manager
 	 *
 	 * @param array $config
-	 *
-	 * @since 2.0
 	 */
 	protected function configure(array $config)
 	{
@@ -98,8 +89,6 @@ class ViewManager extends DataContainer
 	 * Sets the view folder
 	 *
 	 * @param string $folder
-	 *
-	 * @since 2.0
 	 */
 	public function setViewFolder($folder)
 	{
@@ -110,8 +99,6 @@ class ViewManager extends DataContainer
 	 * Adds the given classes to the whitelist.
 	 *
 	 * @param string[] $classes
-	 *
-	 * @since 2.0
 	 */
 	public function whitelist($classes)
 	{
@@ -128,8 +115,6 @@ class ViewManager extends DataContainer
 	 *
 	 * @param string         $extension
 	 * @param AbstractParser $parser
-	 *
-	 * @since 2.0
 	 */
 	public function registerParser($extension, AbstractParser $parser)
 	{
@@ -141,8 +126,6 @@ class ViewManager extends DataContainer
 	 * Registers multiple parsers at once
 	 *
 	 * @param array $parsers Key as the file extension and value as the parser instance.
-	 *
-	 * @since 2.0
 	 */
 	public function registerParsers(array $parsers)
 	{
@@ -156,8 +139,6 @@ class ViewManager extends DataContainer
 	 * Returns the parsers
 	 *
 	 * @return AbstractParser[]
-	 *
-	 * @since 2.0
 	 */
 	public function getParsers()
 	{
@@ -168,8 +149,6 @@ class ViewManager extends DataContainer
 	 * Returns a parser by extension
 	 *
 	 * @return AbstractParser|null
-	 *
-	 * @since 2.0
 	 */
 	public function getParser($extension)
 	{
@@ -183,8 +162,6 @@ class ViewManager extends DataContainer
 	 * Returns the Finder instance
 	 *
 	 * @return Finder
-	 *
-	 * @since 2.0
 	 */
 	public function getFinder()
 	{
@@ -195,8 +172,6 @@ class ViewManager extends DataContainer
 	 * Sets the Finder instance that will be used to load views
 	 *
 	 * @param Finder $finder
-	 *
-	 * @since 2.0
 	 */
 	public function setFinder(Finder $finder)
 	{
@@ -209,8 +184,6 @@ class ViewManager extends DataContainer
 	 * @param $view
 	 *
 	 * @return array|\Fuel\FileSystem\Directory|\Fuel\FileSystem\File|string
-	 *
-	 * @since 2.0
 	 */
 	public function findView($view)
 	{
@@ -229,9 +202,7 @@ class ViewManager extends DataContainer
 	 * @return View
 	 *
 	 * @throws ViewNotFoundException If the given view cannot be found
-	 * @throws DomainException       If a parser for the view cannot be found
-	 *
-	 * @since 2.0
+	 * @throws \DomainException       If a parser for the view cannot be found
 	 */
 	public function forge($view, array $data = null, $filter = null)
 	{
@@ -249,7 +220,7 @@ class ViewManager extends DataContainer
 
 		if ( ! isset($this->parsers[$extension]))
 		{
-			throw new DomainException('Could not find parser for extension: '.$extension);
+			throw new \DomainException('Could not find parser for extension: '.$extension);
 		}
 
 		$parser = $this->parsers[$extension];

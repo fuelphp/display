@@ -4,7 +4,7 @@
  * @version    2.0
  * @author     Fuel Development Team
  * @license    MIT License
- * @copyright  2010 - 2014 Fuel Development Team
+ * @copyright  2010 - 2015 Fuel Development Team
  * @link       http://fuelphp.com
  */
 
@@ -14,10 +14,6 @@ use Fuel\Common\DataContainer as Container;
 
 /**
  * Contains view data
- *
- * @package Fuel\Display
- *
- * @since 2.0
  */
 abstract class DataContainer extends Container
 {
@@ -52,8 +48,6 @@ abstract class DataContainer extends Container
 	 * Sets the auto filter setting
 	 *
 	 * @param boolean $filter
-	 *
-	 * @since 2.0
 	 */
 	public function autoFilter($filter = true)
 	{
@@ -64,8 +58,6 @@ abstract class DataContainer extends Container
 	 * Retrieves all the view data
 	 *
 	 * @return array
-	 *
-	 * @since 2.0
 	 */
 	public function getData()
 	{
@@ -139,8 +131,6 @@ abstract class DataContainer extends Container
 	 * @param mixed $value
 	 *
 	 * @return string
-	 *
-	 * @since 2.0
 	 */
 	public function filter($value)
 	{
@@ -160,8 +150,6 @@ abstract class DataContainer extends Container
 	 * @param boolean      $filter
 	 *
 	 * @return $this
-	 *
-	 * @since 2.0
 	 */
 	public function set($key, $value = null, $filter = null)
 	{
@@ -215,8 +203,6 @@ abstract class DataContainer extends Container
 	 * Removes all the view data
 	 *
 	 * @return $this
-	 *
-	 * @since 2.0
 	 */
 	public function clearData()
 	{
@@ -233,8 +219,6 @@ abstract class DataContainer extends Container
 	 * @param boolean $filter
 	 *
 	 * @return $this
-	 *
-	 * @since 2.0
 	 */
 	public function replaceData(array $data, $filter = null)
 	{
@@ -257,8 +241,6 @@ abstract class DataContainer extends Container
 	 * @param boolean $filter Whether to filter the var on output
 	 *
 	 * @return $this
-	 *
-	 * @since 2.0
 	 */
 	public function bind($key, &$value, $filter = null)
 	{
@@ -281,8 +263,6 @@ abstract class DataContainer extends Container
 	 * @param mixed        $value
 	 *
 	 * @return $this
-	 *
-	 * @since 2.0
 	 */
 	public function setSafe($key, $value = null)
 	{

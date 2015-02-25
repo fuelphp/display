@@ -4,7 +4,7 @@
  * @version    2.0
  * @author     Fuel Development Team
  * @license    MIT License
- * @copyright  2010 - 2014 Fuel Development Team
+ * @copyright  2010 - 2015 Fuel Development Team
  * @link       http://fuelphp.com
  */
 
@@ -14,17 +14,11 @@ use dflydev\markdown\MarkdownExtraParser;
 
 /**
  * Allows the parsing of view files using MarkdownExtra
- *
- * @package Fuel\Display
- *
- * @since 2.0
  */
 class MarkdownExtra extends Markdown
 {
 	/**
 	 * @param MarkdownExtraParser $parser
-	 *
-	 * @since 2.0
 	 */
 	public function __construct(MarkdownExtraParser $parser = null)
 	{

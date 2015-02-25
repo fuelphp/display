@@ -4,7 +4,7 @@
  * @version    2.0
  * @author     Fuel Development Team
  * @license    MIT License
- * @copyright  2010 - 2014 Fuel Development Team
+ * @copyright  2010 - 2015 Fuel Development Team
  * @link       http://fuelphp.com
  */
 
@@ -12,10 +12,6 @@ namespace Fuel\Display;
 
 /**
  * Allows view logic to be encapsulated
- *
- * @package Fuel\Display
- *
- * @since 2.0
  */
 class Presenter extends DataContainer
 {
@@ -41,15 +37,11 @@ class Presenter extends DataContainer
 
 	/**
 	 * Method to do general Presenter setup
-	 *
-	 * @since 2.0
 	 */
 	public function before() {}
 
 	/**
 	 * Method to do general Presenter finishing up
-	 *
-	 * @since 2.0
 	 */
 	public function after() {}
 
@@ -58,8 +50,6 @@ class Presenter extends DataContainer
 	 * @param string      $method Method to call before rendering the Presenter view
 	 * @param boolean     $filter Whether or not to auto filter the view variables
 	 * @param string|View $view
-	 *
-	 * @since 2.0
 	 */
 	public function __construct(ViewManager $viewManager, $method, $autoFilter, $view)
 	{
@@ -77,8 +67,6 @@ class Presenter extends DataContainer
 	 * Retrieves all presenter data from the presenter and the global manager
 	 *
 	 * @return array
-	 *
-	 * @since 2.0
 	 */
 	public function getData()
 	{
@@ -92,8 +80,6 @@ class Presenter extends DataContainer
 	 * Sets a new View (object)
 	 *
 	 * @param string|View $view
-	 *
-	 * @since 2.0
 	 */
 	public function setView($view)
 	{
@@ -112,8 +98,6 @@ class Presenter extends DataContainer
 	 * @param array $data additional view data
 	 *
 	 * @return string
-	 *
-	 * @since 2.0
 	 */
 	public function render(array $data = [])
 	{
@@ -141,8 +125,6 @@ class Presenter extends DataContainer
 	 * Renders the presenter view
 	 *
 	 * @return string
-	 *
-	 * @since 2.0
 	 */
 	public function __toString()
 	{

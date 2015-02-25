@@ -4,7 +4,7 @@
  * @version    2.0
  * @author     Fuel Development Team
  * @license    MIT License
- * @copyright  2010 - 2014 Fuel Development Team
+ * @copyright  2010 - 2015 Fuel Development Team
  * @link       http://fuelphp.com
  */
 
@@ -14,10 +14,6 @@ use Twig_Environment;
 
 /**
  * Allows Twig templates to be parsed
- *
- * @package Fuel\Display
- *
- * @since 2.0
  */
 class Twig extends AbstractParser
 {
@@ -28,8 +24,6 @@ class Twig extends AbstractParser
 
 	/**
 	 * @param Twig_Environment $twig
-	 *
-	 * @since 2.0
 	 */
 	public function __construct(Twig_Environment $twig = null)
 	{
@@ -40,8 +34,6 @@ class Twig extends AbstractParser
 	 * Returns the Twig Environment
 	 *
 	 * @return Twig_Environment
-	 *
-	 * @since 2.0
 	 */
 	public function getTwig()
 	{
@@ -54,9 +46,7 @@ class Twig extends AbstractParser
 	}
 
 	/**
-	 * Setups the Twig Environment
-	 *
-	 * @since 2.0
+	 * Sets the Twig Environment up
 	 */
 	public function setupTwig()
 	{

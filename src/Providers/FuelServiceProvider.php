@@ -15,10 +15,6 @@ use League\Container\ServiceProvider;
 
 /**
  * Fuel ServiceProvider class for Display
- *
- * @package Fuel\Display
- *
- * @since 2.0
  */
 class FuelServiceProvider extends ServiceProvider
 {

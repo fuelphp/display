@@ -4,7 +4,7 @@
  * @version    2.0
  * @author     Fuel Development Team
  * @license    MIT License
- * @copyright  2010 - 2014 Fuel Development Team
+ * @copyright  2010 - 2015 Fuel Development Team
  * @link       http://fuelphp.com
  */
 
@@ -14,10 +14,6 @@ use dflydev\markdown\MarkdownParser;
 
 /**
  * Allows Markdown templates to be parsed
- *
- * @package Fuel\Display
- *
- * @since 2.0
  */
 class Markdown extends AbstractParser
 {
@@ -28,8 +24,6 @@ class Markdown extends AbstractParser
 
 	/**
 	 * @param MarkdownParser $parser
-	 *
-	 * @since 2.0
 	 */
 	public function __construct(MarkdownParser $parser = null)
 	{
@@ -40,8 +34,6 @@ class Markdown extends AbstractParser
 	 * Returns the Markdown Parser
 	 *
 	 * @return MarkdownParser
-	 *
-	 * @since 2.0
 	 */
 	public function getMarkdown()
 	{
@@ -54,9 +46,7 @@ class Markdown extends AbstractParser
 	}
 
 	/**
-	 * Setups the Markdown Parser
-	 *
-	 * @since 2.0
+	 * Sets the Markdown Parser up
 	 */
 	protected function setupMarkdown()
 	{

@@ -4,7 +4,7 @@
  * @version    2.0
  * @author     Fuel Development Team
  * @license    MIT License
- * @copyright  2010 - 2014 Fuel Development Team
+ * @copyright  2010 - 2015 Fuel Development Team
  * @link       http://fuelphp.com
  */
 
@@ -14,10 +14,6 @@ use Mustache_Engine;
 
 /**
  * Allows Mustache templates to be parsed
- *
- * @package Fuel\Display
- *
- * @since 2.0
  */
 class Mustache extends AbstractParser
 {
@@ -28,8 +24,6 @@ class Mustache extends AbstractParser
 
 	/**
 	 * @param Mustache_Engine $mustache
-	 *
-	 * @since 2.0
 	 */
 	public function __construct(Mustache_Engine $mustache = null)
 	{
@@ -40,8 +34,6 @@ class Mustache extends AbstractParser
 	 * Returns the Mustache_Engine
 	 *
 	 * @return Mustache_Engine
-	 *
-	 * @since 2.0
 	 */
 	public function getMustache()
 	{
@@ -55,8 +47,6 @@ class Mustache extends AbstractParser
 
 	/**
 	 * Sets up Mustache_Engine
-	 *
-	 * @since 2.0
 	 */
 	public function setupMustache()
 	{

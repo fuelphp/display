@@ -1,6 +1,6 @@
 {
 	"name": "fuelphp/display",
-	"description": "FuelPHP Display and templating.",
+	"description": "View package for FuelPHP supporting multiple parser languages",
 	"homepage": "https://github.com/fuelphp/display",
 	"license": "MIT",
 	"authors": [

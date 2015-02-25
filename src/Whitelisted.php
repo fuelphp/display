@@ -4,7 +4,7 @@
  * @version    2.0
  * @author     Fuel Development Team
  * @license    MIT License
- * @copyright  2010 - 2014 Fuel Development Team
+ * @copyright  2010 - 2015 Fuel Development Team
  * @link       http://fuelphp.com
  */
 
@@ -13,10 +13,6 @@ namespace Fuel\Display;
 /**
  * Implement this interface to whitelist your
  * class for view data filtering
- *
- * @package Fuel\Display
- *
- * @since 2.0
  */
 interface Whitelisted
 {
