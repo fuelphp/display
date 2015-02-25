@@ -41,9 +41,9 @@ class FuelServiceProvider extends ServiceProvider
 	 */
 	public function register()
 	{
-		$this->container->add('getViewManagerInstance', function()
+		$this->container->add('viewManagerInstance', function()
 		{
-			$app = $this->container->get('getApplicationInstance');
+			$app = $this->container->get('applicationInstance');
 
 			return $app->getViewManager();
 		});
