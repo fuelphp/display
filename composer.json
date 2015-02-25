@@ -15,7 +15,7 @@
 		"fuelphp/common": "~2.0"
 	},
 	"require-dev": {
-		"codeception/codeception": "~2.0.0",
+		"codeception/codeception": "~2.0",
 		"codeception/mockery-module": "dev-master",
 		"twig/twig": "1.*",
 		"mustache/mustache": "2.3.*",
@@ -23,16 +23,21 @@
 		"smarty/smarty": "3.1.*",
 		"xamin/handlebars.php": "dev-master"
 	},
-	"autoload": {
-		"psr-4": {
-			"Fuel\\Display\\": "src/"
-		}
-	},
 	"suggest": {
 		"twig/twig": "Allow Twig templating with the Display package",
 		"mustache/mustache": "Allow Mustache templating with the Display package",
 		"dflydev/markdown": "Allow Markdown templating with the Display package",
 		"smarty/smarty": "Allow Smarty templating with the Display package",
 		"xamin/handlebars.php": "Allow Handlebars templating with the Display package"
+	},
+	"autoload": {
+		"psr-4": {
+			"Fuel\\Display\\": "src/"
+		}
+	},
+	"extra": {
+		"branch-alias": {
+			"dev-master": "2.0-dev"
+		}
 	}
 }
