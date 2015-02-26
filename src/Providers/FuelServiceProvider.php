@@ -39,13 +39,17 @@ class FuelServiceProvider extends ServiceProvider
 	{
 		$this->container->add('viewManagerInstance', function()
 		{
-			$app = $this->container->get('applicationInstance');
+			if ($app = $this->container->get('applicationInstance'))
+			{
+				return $app->getViewManager();
+			}
 
-			return $app->getViewManager();
+			// TEMPORARY UGLY HACK (thanks to injection factory)
+			return $this->container->get('viewmanager', [$this->container->get('finder')]);
 		});
 
 		$this->container->inflector('Fuel\Display\ViewManagerAware')
-			->invokeMethod('setViewManager', ['getViewManagerInstance']);
+			->invokeMethod('setViewManager', ['viewManagerInstance']);
 
 		$this->container->add('viewmanager', function (Finder $finder, array $config = [])
 		{
