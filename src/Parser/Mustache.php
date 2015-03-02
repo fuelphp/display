@@ -50,12 +50,12 @@ class Mustache extends AbstractParser
 	 */
 	public function setupMustache()
 	{
-		$mustacheLoader = new MustacheLoader($this->manager);
+		$mustacheLoader = new MustacheLoader($this->viewManager);
 		$config = ['loader' => $mustacheLoader];
 
-		if ($this->manager->cachePath)
+		if ($this->viewManager->cachePath)
 		{
-			$config['cache'] = $this->manager->cachePath.'mustache/';
+			$config['cache'] = $this->viewManager->cachePath.'mustache/';
 		}
 
 		$this->mustache = new Mustache_Engine($config);

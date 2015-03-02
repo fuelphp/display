@@ -52,9 +52,9 @@ class Smarty extends AbstractParser
 	{
 		$this->smarty = new SmartyParser;
 
-		if ($this->manager->cachePath)
+		if ($this->viewManager->cachePath)
 		{
-			$this->smarty->setCacheDir($this->manager->cachePath.'smarty/');
+			$this->smarty->setCacheDir($this->viewManager->cachePath.'smarty/');
 		}
 	}
 

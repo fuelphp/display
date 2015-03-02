@@ -52,9 +52,9 @@ class Handlebars extends AbstractParser
 	{
 		$this->engine = new HandlebarsEngine;
 
-		$loader = new HandlebarsLoader($this->manager);
+		$loader = new HandlebarsLoader($this->viewManager);
 
-		$partialLoader = new HandlebarsLoader($this->manager);
+		$partialLoader = new HandlebarsLoader($this->viewManager);
 		$partialLoader->setPrefix('_');
 
 		$this->engine->setLoader($loader);
