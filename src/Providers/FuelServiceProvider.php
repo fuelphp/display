@@ -37,15 +37,12 @@ class FuelServiceProvider extends ServiceProvider
 	 */
 	public function register()
 	{
-		$this->container->add('viewManagerInstance', function()
+		$this->container->add('viewManagerInstance', function($ignoreException = true)
 		{
-			if ($app = $this->container->get('applicationInstance'))
+			if ($app = $this->container->get('applicationInstance', [$ignoreException]))
 			{
 				return $app->getViewManager();
 			}
-
-			// TEMPORARY UGLY HACK (thanks to injection factory)
-			return $this->container->get('viewmanager', [$this->container->get('finder')]);
 		});
 
 		$this->container->inflector('Fuel\Display\ViewManagerAware')
