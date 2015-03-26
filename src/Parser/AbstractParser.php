@@ -20,14 +20,4 @@ use Fuel\Display\ViewManagerAcceptor;
 abstract class AbstractParser implements Parser, ViewManagerAware
 {
 	use ViewManagerAcceptor;
-
-	/**
-	 * Parses the view
-	 *
-	 * @param string $file
-	 * @param array  $data
-	 *
-	 * @return string
-	 */
-	abstract public function parse($file, array $data = []);
 }

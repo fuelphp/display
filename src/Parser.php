@@ -11,7 +11,7 @@
 namespace Fuel\Display;
 
 /**
- * Manager logic for parsers
+ * Parses a view file using templating engines
  */
 interface Parser
 {
