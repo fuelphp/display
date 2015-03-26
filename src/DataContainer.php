@@ -72,9 +72,9 @@ abstract class DataContainer extends Container
 
 			if ($this->shouldBeFiltered($key))
 			{
-				if ($value instanceOf Sanitize)
+				if ($value instanceof Sanitize)
 				{
-					$data[$key] = $value->sanitizeObject();
+					$data[$key] = $value->sanitize();
 				}
 				else
 				{

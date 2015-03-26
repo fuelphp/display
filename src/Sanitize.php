@@ -15,5 +15,10 @@ namespace Fuel\Display;
  */
 interface Sanitize
 {
-	public function sanitizeObject();
+	/**
+	 * Sanitizes the object
+	 *
+	 * @return mixed
+	 */
+	public function sanitize();
 }

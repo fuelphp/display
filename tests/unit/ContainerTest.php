@@ -53,7 +53,7 @@ class ContainerTest extends Test
 		$reference = null;
 
 		$sanitize
-			->shouldReceive('sanitizeObject')
+			->shouldReceive('sanitize')
 			->once()
 			->andReturn('sanitized');
 
@@ -84,7 +84,7 @@ class ContainerTest extends Test
 		$sanitize = \Mockery::mock('Fuel\Display\Sanitize');
 
 		$sanitize
-			->shouldReceive('sanitizeObject')
+			->shouldReceive('sanitize')
 			->once()
 			->andReturn('sanitized');
 
@@ -103,7 +103,7 @@ class ContainerTest extends Test
 		$sanitize = \Mockery::mock('Fuel\Display\Sanitize');
 
 		$sanitize
-			->shouldReceive('sanitizeObject')
+			->shouldReceive('sanitize')
 			->once()
 			->andReturn('sanitized');
 
