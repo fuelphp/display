@@ -11,7 +11,6 @@
 namespace Fuel\Display;
 
 use Fuel\FileSystem\Finder;
-use Fuel\Display\Parser\AbstractParser;
 
 /**
  * Responsible for loading and parsing views
@@ -26,7 +25,7 @@ class ViewManager extends DataContainer
 	/**
 	 * Available view parsers
 	 *
-	 * @var AbstractParser[]
+	 * @var Parser[]
 	 */
 	protected $parsers = [];
 
@@ -107,25 +106,29 @@ class ViewManager extends DataContainer
 			$classes = func_get_args();
 		}
 
-		$this->whitelist = array_merge($this->whitelist, $classes);
+		$this->whitelist = array_unique(array_merge($this->whitelist, $classes));
 	}
 
 	/**
 	 * Registers a new parser for rendering a given file type
 	 *
-	 * @param string         $extension
-	 * @param AbstractParser $parser
+	 * @param string $extension
+	 * @param Parser $parser
 	 */
-	public function registerParser($extension, AbstractParser $parser)
+	public function registerParser($extension, Parser $parser)
 	{
-		$parser->setViewManager($this);
+		if ($parser instanceof ViewManagerAware)
+		{
+			$parser->setViewManager($this);
+		}
+
 		$this->parsers[$extension] = $parser;
 	}
 
 	/**
 	 * Registers multiple parsers at once
 	 *
-	 * @param array $parsers Key as the file extension and value as the parser instance.
+	 * @param array $parsers Key as the file extension and value as the parser instance
 	 */
 	public function registerParsers(array $parsers)
 	{
@@ -136,19 +139,9 @@ class ViewManager extends DataContainer
 	}
 
 	/**
-	 * Returns the parsers
-	 *
-	 * @return AbstractParser[]
-	 */
-	public function getParsers()
-	{
-		return $this->parsers;
-	}
-
-	/**
 	 * Returns a parser by extension
 	 *
-	 * @return AbstractParser|null
+	 * @return Parser|null
 	 */
 	public function getParser($extension)
 	{
@@ -156,6 +149,16 @@ class ViewManager extends DataContainer
 		{
 			return $this->parsers[$extension];
 		}
+	}
+
+	/**
+	 * Returns the parsers
+	 *
+	 * @return Parser[]
+	 */
+	public function getParsers()
+	{
+		return $this->parsers;
 	}
 
 	/**

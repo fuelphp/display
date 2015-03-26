@@ -10,7 +10,6 @@
 
 namespace Fuel\Display;
 
-use Fuel\Display\Parser\AbstractParser;
 
 /**
  * Responsible for rendering a view
@@ -23,7 +22,7 @@ class View extends DataContainer
 	protected $file;
 
 	/**
-	 * @var AbstractParser
+	 * @var Parser
 	 */
 	protected $parser;
 
@@ -33,12 +32,12 @@ class View extends DataContainer
 	protected $viewManager;
 
 	/**
-	 * @param ViewManager    $viewManager
-	 * @param AbstractParser $parser
-	 * @param string         $file
-	 * @param boolean        $autoFilter
+	 * @param ViewManager $viewManager
+	 * @param Parser      $parser
+	 * @param string      $file
+	 * @param boolean     $autoFilter
 	 */
-	public function __construct(ViewManager $viewManager, AbstractParser $parser, $file, $autoFilter)
+	public function __construct(ViewManager $viewManager, Parser $parser, $file, $autoFilter)
 	{
 		$this->file = $file;
 		$this->parser = $parser;
