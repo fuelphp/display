@@ -8,19 +8,13 @@
  * @link       http://fuelphp.com
  */
 
-namespace Fuel\Display\Parser;
-
-use Fuel\Display\Parser;
-use Fuel\Display\ViewManagerAware;
-use Fuel\Display\ViewManagerAcceptor;
+namespace Fuel\Display;
 
 /**
  * Manager logic for parsers
  */
-abstract class AbstractParser implements Parser, ViewManagerAware
+interface Parser
 {
-	use ViewManagerAcceptor;
-
 	/**
 	 * Parses the view
 	 *
@@ -29,5 +23,5 @@ abstract class AbstractParser implements Parser, ViewManagerAware
 	 *
 	 * @return string
 	 */
-	abstract public function parse($file, array $data = []);
+	public function parse($file, array $data = []);
 }
