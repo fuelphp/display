@@ -152,7 +152,7 @@ class ViewManagerTest extends Test
 
 	/**
 	 * @covers            ::forge
-	 * @expectedException Fuel\Display\ViewNotFoundException
+	 * @expectedException Fuel\Display\Exception\ViewNotFound
 	 */
 	public function testForgeViewNotFound()
 	{

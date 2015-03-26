@@ -8,12 +8,12 @@
  * @link       http://fuelphp.com
  */
 
-namespace Fuel\Display;
+namespace Fuel\Display\Exception;
 
 /**
  * Thrown when a View is not found
  */
-class ViewNotFoundException extends \Exception
+class ViewNotFound extends \Exception
 {
 
 }

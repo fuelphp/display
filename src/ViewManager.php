@@ -201,14 +201,14 @@ class ViewManager extends DataContainer
 	 *
 	 * @return View
 	 *
-	 * @throws ViewNotFoundException If the given view cannot be found
+	 * @throws Exception\ViewNotFound If the given view cannot be found
 	 * @throws \DomainException       If a parser for the view cannot be found
 	 */
 	public function forge($view, array $data = null, $filter = null)
 	{
 		if ( ! $file = $this->findView($view))
 		{
-			throw new ViewNotFoundException('Could not locate view: '.$view);
+			throw new Exception\ViewNotFound('Could not locate view: '.$view);
 		}
 
 		if ($filter === null)
